@@ -1,5 +1,5 @@
 {
-    "description": "Sales Funnel Plugin — auto-validation & session hooks",
+    "description": "Sales Funnel Plugin — auto-validation hooks",
     "hooks": {
         "PostToolUse": [
             {
@@ -25,21 +25,10 @@
             {
                 "hooks": [
                     {
-                        "type": "agent",
-                        "prompt": "Review all HTML files in the project. Check that every page has: (1) a mobile viewport meta tag, (2) at least one CTA above the fold, (3) proper heading hierarchy (single h1), (4) image alt tags, (5) page links that resolve to real files. Report any issues found as a prioritized list.",
+                        "type": "command",
+                        "command": "node \"${CLAUDE_PLUGIN_ROOT}/scripts/validate-funnel-structure.js\"",
                         "timeout": 30,
                         "statusMessage": "Running final funnel validation..."
-                    }
-                ]
-            }
-        ],
-        "SessionStart": [
-            {
-                "hooks": [
-                    {
-                        "type": "prompt",
-                        "prompt": "Welcome the user and ask what kind of sales funnel they'd like to build. Mention you can help with lead gen, webinar, SaaS, direct response, e-commerce, and many more funnel types. Ask about their product/service, target audience, and goals.",
-                        "once": true
                     }
                 ]
             }
