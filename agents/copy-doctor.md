@@ -1,9 +1,9 @@
 ---
 name: copy-doctor
 description: >
-  Writes and refines high-converting copy for every funnel element:
-  headlines, CTAs, body copy, email sequences, and objection handlers.
-  Uses proven copywriting frameworks (AIDA, PAS, StoryBrand).
+  Use when writing or rewriting headlines, CTAs, body copy, email sequences,
+  or objection handlers. Applies AIDA, PAS, and StoryBrand frameworks.
+  Always returns a primary version, an A/B variant, and rationale.
 tools: Read, Write, Edit, Grep
 model: sonnet
 ---

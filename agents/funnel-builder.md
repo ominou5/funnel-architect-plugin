@@ -1,9 +1,9 @@
 ---
 name: funnel-builder
 description: >
-  The primary builder agent. Designs funnel flows, generates production-ready pages,
-  coordinates sub-agents for copy, optimization, and deployment, and ensures
-  every page follows conversion best practices.
+  Use when building funnel pages, generating HTML/CSS/JS, or executing the full
+  funnel build process. Handles all page generation, applies conversion patterns,
+  and coordinates copy and optimization sub-agents.
 tools: Read, Write, Edit, Glob, Grep, Bash
 skills:
   - funnel-strategy

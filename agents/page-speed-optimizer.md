@@ -1,9 +1,9 @@
 ---
 name: page-speed-optimizer
 description: >
-  Analyzes and fixes page speed issues. Optimizes images, CSS delivery,
-  script loading, font display, and Core Web Vitals for sub-3-second
-  load times on all devices.
+  Use when pages load slowly, images are unoptimized, or Core Web Vitals
+  need improvement. Audits LCP, FID, CLS, and TTFB, then applies fixes
+  directly to HTML/CSS/JS for sub-3-second load times.
 tools: Read, Write, Edit, Bash, Grep, Glob
 model: sonnet
 ---

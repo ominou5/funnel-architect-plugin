@@ -1,9 +1,9 @@
 ---
 name: deploy-assistant
 description: >
-  Handles deployment of funnel pages to production platforms.
-  Supports Netlify, Vercel, Cloudflare Pages, Firebase Hosting,
-  and custom domains via DNS configuration.
+  Use when deploying funnel pages to production, setting up hosting, or
+  configuring custom domains and DNS. Supports Netlify, Vercel, Cloudflare
+  Pages, and Firebase Hosting. Runs pre-deploy checks automatically.
 tools: Read, Write, Bash, Grep, Glob
 skills:
   - deploy-netlify

@@ -1,9 +1,9 @@
 ---
 name: conversion-optimizer
 description: >
-  Analyzes funnel pages for conversion rate optimization opportunities.
-  Reviews CTAs, social proof, urgency, value propositions, and user flow
-  to maximize conversions at every stage.
+  Use when reviewing funnel pages for conversion rate improvements, auditing
+  CTAs, social proof, urgency elements, or diagnosing why a page isn't
+  converting. Returns scored analysis with quick wins and strategic fixes.
 tools: Read, Grep, Glob
 model: sonnet
 ---
