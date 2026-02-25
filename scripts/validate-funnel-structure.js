@@ -7,7 +7,6 @@
 
 const fs = require('fs');
 const path = require('path');
-const glob = require('path');
 
 function findHTMLFiles(dir) {
     const results = [];

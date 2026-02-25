@@ -17,7 +17,7 @@ Tell Claude what you're selling and who you're selling to. Funnel Architect hand
 
 ```bash
 # Clone the plugin
-git clone https://github.com/funnel-architect/funnel-architect-plugin.git
+git clone https://github.com/ominou5/funnel-architect-plugin.git
 
 # Add to your Claude Code plugins directory
 # (see Claude Code docs for plugin installation)
@@ -33,7 +33,7 @@ funnel-architect-plugin/
 ├── .claude-plugin/
 │   └── plugin.json          # Plugin manifest
 ├── agents/
-│   ├── funnel-architect.md   # Primary orchestrator
+│   ├── funnel-builder.md     # Primary builder
 │   ├── conversion-optimizer.md
 │   ├── page-speed-optimizer.md
 │   ├── copy-doctor.md
@@ -84,7 +84,7 @@ funnel-architect-plugin/
 
 | Agent | Role |
 |---|---|
-| **Funnel Architect** | Primary orchestrator — routes requests, coordinates sub-agents |
+| **Funnel Builder** | Primary builder — designs funnel flows, generates pages, applies conversion patterns |
 | **Conversion Optimizer** | CRO specialist — analyzes pages, recommends improvements |
 | **Page Speed Optimizer** | Performance expert — audits and fixes Core Web Vitals |
 | **Copy Doctor** | Copywriter — headlines, CTAs, objection handlers |
