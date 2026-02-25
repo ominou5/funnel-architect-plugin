@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You're In! Check Your Email</title>
+    <meta name="description" content="Your free [Lead Magnet Name] is on its way. Here's what to do next.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap">
+    </noscript>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #0F172A;
+            --bg-card: #1E293B;
+            --text: #F8FAFC;
+            --text-secondary: #CBD5E1;
+            --text-muted: #94A3B8;
+            --accent: #3B82F6;
+            --accent-hover: #2563EB;
+            --accent-glow: rgba(59, 130, 246, 0.3);
+            --success: #22C55E;
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 16px;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .success-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(34, 197, 94, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 24px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .steps {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px 24px;
+            text-align: left;
+            margin-bottom: 40px;
+        }
+
+        .steps h2 {
+            font-size: 1.125rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .step {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            padding: 12px 0;
+        }
+
+        .step+.step {
+            border-top: 1px solid var(--border);
+        }
+
+        .step-number {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+
+        .step-text strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .step-text span {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+        }
+
+        .next-step {
+            margin-bottom: 40px;
+        }
+
+        .next-step h2 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+        }
+
+        .next-step p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .cta-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.2s;
+            min-height: 48px;
+        }
+
+        .cta-secondary:hover {
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+        }
+
+        .share {
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        .share p {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            margin-bottom: 12px;
+        }
+
+        .share-links {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .share-links a {
+            padding: 8px 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .share-links a:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <div class="success-icon">✅</div>
+
+        <h1>You're In!</h1>
+
+        <p class="subtitle">
+            Your <strong>[Lead Magnet Name]</strong> is on its way to your inbox.
+        </p>
+
+        <div class="steps">
+            <h2>Here's What to Do Next</h2>
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-text">
+                    <strong>Check your email</strong>
+                    <span>Look for an email from [Your Name / Brand] — check spam/promotions if needed.</span>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-text">
+                    <strong>Download your [Lead Magnet]</strong>
+                    <span>Click the download link in the email or <a href="#" style="color: var(--accent);">download
+                            directly here</a>.</span>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-text">
+                    <strong>Take action</strong>
+                    <span>Apply the [specific first step] today to start seeing results.</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="next-step">
+            <h2>While You Wait…</h2>
+            <p>Want to go even deeper? Check out [related resource, webinar, or offer].</p>
+            <a href="#" class="cta-secondary">
+                Learn More →
+            </a>
+        </div>
+
+        <div class="share">
+            <p>Know someone who'd benefit from this? Share it with them:</p>
+            <div class="share-links">
+                <a href="#">Twitter / X</a>
+                <a href="#">Facebook</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Email</a>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

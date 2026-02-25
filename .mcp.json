@@ -1,0 +1,74 @@
+{
+    "google-analytics": {
+        "command": "npx",
+        "args": [
+            "-y",
+            "@anthropic/mcp-google-analytics"
+        ],
+        "env": {
+            "GA4_PROPERTY_ID": "${GA4_PROPERTY_ID}"
+        }
+    },
+    "stripe": {
+        "command": "npx",
+        "args": [
+            "-y",
+            "@stripe/agent-toolkit",
+            "--tools=all"
+        ],
+        "env": {
+            "STRIPE_SECRET_KEY": "${STRIPE_SECRET_KEY}"
+        }
+    },
+    "hubspot": {
+        "command": "npx",
+        "args": [
+            "-y",
+            "@anthropic/mcp-hubspot"
+        ],
+        "env": {
+            "HUBSPOT_API_KEY": "${HUBSPOT_API_KEY}"
+        }
+    },
+    "mailchimp": {
+        "command": "npx",
+        "args": [
+            "-y",
+            "@anthropic/mcp-mailchimp"
+        ],
+        "env": {
+            "MAILCHIMP_API_KEY": "${MAILCHIMP_API_KEY}"
+        }
+    },
+    "vercel": {
+        "command": "npx",
+        "args": [
+            "-y",
+            "@anthropic/mcp-vercel"
+        ],
+        "env": {
+            "VERCEL_TOKEN": "${VERCEL_TOKEN}"
+        }
+    },
+    "firebase": {
+        "command": "npx",
+        "args": [
+            "-y",
+            "@anthropic/mcp-firebase"
+        ],
+        "env": {
+            "FIREBASE_PROJECT_ID": "${FIREBASE_PROJECT_ID}"
+        }
+    },
+    "supabase": {
+        "command": "npx",
+        "args": [
+            "-y",
+            "@anthropic/mcp-supabase"
+        ],
+        "env": {
+            "SUPABASE_URL": "${SUPABASE_URL}",
+            "SUPABASE_ANON_KEY": "${SUPABASE_ANON_KEY}"
+        }
+    }
+}

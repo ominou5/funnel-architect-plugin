@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Offer — {{BRAND}}</title>
+    <meta name="description" content="{{META_DESCRIPTION}}">
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0a0a0a;
+            --surface: #161616;
+            --card: #1a1a1a;
+            --text: #f5f5f5;
+            --muted: #a3a3a3;
+            --accent: #10b981;
+            --accent-hover: #059669;
+            --gold: #f59e0b;
+            --danger: #ef4444;
+            --radius: 16px;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* ── Header Bar ── */
+        .promo-bar {
+            background: linear-gradient(90deg, var(--accent), #06b6d4);
+            text-align: center;
+            padding: 0.625rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        /* ── Layout ── */
+        .page {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 4rem;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero .wait-badge {
+            display: inline-block;
+            padding: 0.375rem 1rem;
+            background: rgba(245, 158, 11, 0.12);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 80px;
+            color: var(--gold);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(1.5rem, 4vw, 2.25rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero .subtext {
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
+        /* ── Product Card ── */
+        .product-card {
+            background: var(--card);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .product-card h2 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.75rem;
+            position: relative;
+            color: var(--muted);
+        }
+
+        .feature-list li::before {
+            content: '✅';
+            position: absolute;
+            left: 0;
+        }
+
+        /* ── Pricing ── */
+        .pricing {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .original-price {
+            font-size: 1.25rem;
+            color: var(--muted);
+            text-decoration: line-through;
+            margin-bottom: 0.25rem;
+        }
+
+        .sale-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .sale-price .currency {
+            font-size: 1.5rem;
+            vertical-align: top;
+        }
+
+        .savings-badge {
+            display: inline-block;
+            margin-top: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.25);
+            border-radius: 80px;
+            color: var(--danger);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* ── CTA ── */
+        .cta-button {
+            display: block;
+            width: 100%;
+            padding: 1.125rem;
+            background: var(--accent);
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            border-radius: 80px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s;
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.25);
+        }
+
+        .cta-button:hover {
+            background: var(--accent-hover);
+            transform: scale(1.02);
+        }
+
+        .guarantee {
+            text-align: center;
+            margin-top: 1rem;
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        /* ── Order Bump ── */
+        .order-bump {
+            background: rgba(245, 158, 11, 0.06);
+            border: 2px dashed rgba(245, 158, 11, 0.3);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .order-bump label {
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-start;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .order-bump input[type="checkbox"] {
+            margin-top: 4px;
+            accent-color: var(--gold);
+            width: 18px;
+            height: 18px;
+        }
+
+        .order-bump strong {
+            color: var(--gold);
+        }
+
+        /* ── Testimonial ── */
+        .testimonial {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-left: 3px solid var(--accent);
+        }
+
+        .testimonial p {
+            font-style: italic;
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .testimonial cite {
+            color: var(--text);
+            font-size: 0.875rem;
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        @media (max-width: 640px) {
+            .page {
+                padding: 1.5rem 1rem 3rem;
+            }
+
+            .product-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="promo-bar">
+        🎉 One-Time Special Offer — This page won't be shown again
+    </div>
+
+    <div class="page">
+
+        <!-- Hero -->
+        <section class="hero">
+            <span class="wait-badge">⚡ Wait! Your order is not complete</span>
+            <h1>{{TRIPWIRE_HEADLINE}}</h1>
+            <p class="subtext">{{TRIPWIRE_SUBHEADLINE}}</p>
+        </section>
+
+        <!-- Product Card -->
+        <div class="product-card">
+            <h2>Here's What You Get:</h2>
+            <ul class="feature-list">
+                <li>{{FEATURE_1}}</li>
+                <li>{{FEATURE_2}}</li>
+                <li>{{FEATURE_3}}</li>
+                <li>{{FEATURE_4}}</li>
+                <li>{{FEATURE_5}}</li>
+            </ul>
+        </div>
+
+        <!-- Testimonial -->
+        <div class="testimonial">
+            <p>"{{TESTIMONIAL_TEXT}}"</p>
+            <cite>— {{TESTIMONIAL_NAME}}, {{TESTIMONIAL_TITLE}}</cite>
+        </div>
+
+        <!-- Order Bump -->
+        <div class="order-bump">
+            <label>
+                <input type="checkbox" id="bump">
+                <span>
+                    <strong>YES! Add {{BUMP_PRODUCT}} for just ${{BUMP_PRICE}}</strong><br>
+                    <span style="color: var(--muted); font-size: 0.85rem;">{{BUMP_DESCRIPTION}}</span>
+                </span>
+            </label>
+        </div>
+
+        <!-- Pricing & CTA -->
+        <div class="pricing">
+            <div class="original-price">Regular Price: ${{ORIGINAL_PRICE}}</div>
+            <div class="sale-price"><span class="currency">$</span>{{SALE_PRICE}}</div>
+            <span class="savings-badge">You Save ${{SAVINGS_AMOUNT}}</span>
+        </div>
+
+        <button class="cta-button" onclick="window.location.href='{{CHECKOUT_URL}}'">
+            {{CTA_TEXT — e.g. "Yes! Give Me Instant Access →"}}
+        </button>
+
+        <p class="guarantee">🔒 30-Day Money-Back Guarantee • Secure Checkout</p>
+
+        <p style="text-align: center; margin-top: 1.5rem;">
+            <a href="{{NEXT_PAGE_URL}}" style="color: var(--muted); font-size: 0.85rem; text-decoration: underline;">
+                No thanks, I don't need this
+            </a>
+        </p>
+
+    </div>
+
+</body>
+
+</html>

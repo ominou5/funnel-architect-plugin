@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{PRODUCT_NAME}} — {{BRAND}}</title>
+    <meta name="description" content="{{META_DESCRIPTION}}">
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #fafafa;
+            --surface: #ffffff;
+            --text: #171717;
+            --muted: #737373;
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+            --success: #16a34a;
+            --gold: #d97706;
+            --border: #e5e5e5;
+            --radius: 12px;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* ── Nav ── */
+        .nav {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 0.875rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav .brand {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .nav .cart-link {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            position: relative;
+        }
+
+        /* ── Free Shipping Bar ── */
+        .shipping-bar {
+            background: var(--accent);
+            color: #fff;
+            text-align: center;
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* ── Product Layout ── */
+        .product-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        /* ── Product Images ── */
+        .product-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .product-gallery .main-image {
+            width: 100%;
+            aspect-ratio: 1;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .product-gallery .main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-gallery .thumbs {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .product-gallery .thumb {
+            width: 72px;
+            height: 72px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+
+        .product-gallery .thumb:hover,
+        .product-gallery .thumb.active {
+            border-color: var(--accent);
+        }
+
+        .product-gallery .thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ── Product Info ── */
+        .product-info .breadcrumb {
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .product-info .breadcrumb a {
+            color: var(--muted);
+            text-decoration: none;
+        }
+
+        .product-info h1 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Stars */
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stars {
+            color: var(--gold);
+            font-size: 1rem;
+        }
+
+        .rating .count {
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        /* Price */
+        .price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .price-current {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .price-original {
+            font-size: 1.1rem;
+            color: var(--muted);
+            text-decoration: line-through;
+        }
+
+        .price-save {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--success);
+            background: rgba(22, 163, 74, 0.08);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        /* Benefits */
+        .benefit-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .benefit-list li {
+            padding: 0.375rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .benefit-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        /* Variant Select */
+        .variant-select {
+            margin-bottom: 1.5rem;
+        }
+
+        .variant-select label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .variant-options {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .variant-options button {
+            padding: 0.5rem 1.25rem;
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: border-color 0.2s;
+            font-family: inherit;
+        }
+
+        .variant-options button:hover,
+        .variant-options button.selected {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* ATC */
+        .atc-button {
+            display: block;
+            width: 100%;
+            padding: 1.125rem;
+            background: var(--accent);
+            color: #fff;
+            font-size: 1.15rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 80px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s;
+            margin-bottom: 0.75rem;
+        }
+
+        .atc-button:hover {
+            background: var(--accent-hover);
+            transform: scale(1.02);
+        }
+
+        /* Express Checkout */
+        .express-checkout {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .express-checkout button {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--surface);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        /* Trust Badges */
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 0.8rem;
+        }
+
+        .trust-badges span {
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+        }
+
+        /* ── Reviews Section ── */
+        .reviews-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem 4rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .reviews-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .review-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .review-card .review-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .review-card .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--border);
+        }
+
+        .review-card .review-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .review-card .review-date {
+            color: var(--muted);
+            font-size: 0.8rem;
+        }
+
+        .review-card p {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .product-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 1.5rem 1rem;
+            }
+
+            .express-checkout {
+                flex-direction: column;
+            }
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Shipping Bar -->
+    <div class="shipping-bar">🚚 Free Shipping on Orders Over ${{FREE_SHIPPING_THRESHOLD}}</div>
+
+    <!-- Nav -->
+    <nav class="nav">
+        <a href="/" class="brand">{{BRAND}}</a>
+        <a href="/cart" class="cart-link">🛒 Cart (0)</a>
+    </nav>
+
+    <!-- Product Section -->
+    <section class="product-section">
+
+        <!-- Gallery -->
+        <div class="product-gallery">
+            <div class="main-image">
+                <img src="{{MAIN_IMAGE_URL}}" alt="{{PRODUCT_NAME}}">
+            </div>
+            <div class="thumbs">
+                <div class="thumb active"><img src="{{THUMB_1}}" alt=""></div>
+                <div class="thumb"><img src="{{THUMB_2}}" alt=""></div>
+                <div class="thumb"><img src="{{THUMB_3}}" alt=""></div>
+                <div class="thumb"><img src="{{THUMB_4}}" alt=""></div>
+            </div>
+        </div>
+
+        <!-- Info -->
+        <div class="product-info">
+            <div class="breadcrumb"><a href="/">Home</a> / <a href="/{{CATEGORY_SLUG}}">{{CATEGORY}}</a> /
+                {{PRODUCT_NAME}}</div>
+            <h1>{{PRODUCT_NAME}}</h1>
+
+            <div class="rating">
+                <span class="stars">★★★★★</span>
+                <span class="count">({{REVIEW_COUNT}} reviews)</span>
+            </div>
+
+            <div class="price-row">
+                <span class="price-current">${{PRICE}}</span>
+                <span class="price-original">${{ORIGINAL_PRICE}}</span>
+                <span class="price-save">Save {{SAVE_PERCENT}}%</span>
+            </div>
+
+            <ul class="benefit-list">
+                <li>{{BENEFIT_1}}</li>
+                <li>{{BENEFIT_2}}</li>
+                <li>{{BENEFIT_3}}</li>
+                <li>{{BENEFIT_4}}</li>
+            </ul>
+
+            <!-- Variants -->
+            <div class="variant-select">
+                <label>{{VARIANT_LABEL — e.g. "Size"}}</label>
+                <div class="variant-options">
+                    <button class="selected">{{OPTION_1}}</button>
+                    <button>{{OPTION_2}}</button>
+                    <button>{{OPTION_3}}</button>
+                </div>
+            </div>
+
+            <!-- ATC -->
+            <button class="atc-button" id="atc">Add to Cart — ${{PRICE}}</button>
+
+            <!-- Express Checkout -->
+            <div class="express-checkout">
+                <button>Apple Pay</button>
+                <button>Google Pay</button>
+                <button>Shop Pay</button>
+            </div>
+
+            <!-- Trust -->
+            <div class="trust-badges">
+                <span>🔒 Secure Checkout</span>
+                <span>🚚 Free Shipping</span>
+                <span>↩️ 30-Day Returns</span>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Reviews -->
+    <section class="reviews-section">
+        <h2>Customer Reviews</h2>
+        <div class="review-card">
+            <div class="review-header">
+                <div class="avatar"></div>
+                <div>
+                    <div class="review-name">{{REVIEWER_1_NAME}}</div>
+                    <div class="review-date">{{REVIEW_1_DATE}}</div>
+                </div>
+            </div>
+            <div class="stars" style="margin-bottom: 0.5rem">★★★★★</div>
+            <p>"{{REVIEW_1_TEXT}}"</p>
+        </div>
+        <div class="review-card">
+            <div class="review-header">
+                <div class="avatar"></div>
+                <div>
+                    <div class="review-name">{{REVIEWER_2_NAME}}</div>
+                    <div class="review-date">{{REVIEW_2_DATE}}</div>
+                </div>
+            </div>
+            <div class="stars" style="margin-bottom: 0.5rem">★★★★★</div>
+            <p>"{{REVIEW_2_TEXT}}"</p>
+        </div>
+    </section>
+
+</body>
+
+</html>

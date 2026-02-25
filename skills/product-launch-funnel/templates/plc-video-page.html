@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{PLC_TITLE}} — {{BRAND}}</title>
+    <meta name="description" content="{{META_DESCRIPTION}}">
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0f172a;
+            --surface: #1e293b;
+            --card: #1e293b;
+            --text: #f1f5f9;
+            --muted: #94a3b8;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --gold: #f59e0b;
+            --radius: 16px;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* ── Top Bar ── */
+        .launch-bar {
+            background: linear-gradient(90deg, var(--accent), #8b5cf6);
+            text-align: center;
+            padding: 0.625rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        /* ── Container ── */
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 4rem;
+        }
+
+        /* ── Episode Header ── */
+        .episode-badge {
+            display: inline-block;
+            padding: 0.375rem 1rem;
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 80px;
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .container h1 {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+        }
+
+        .container .subtitle {
+            color: var(--muted);
+            font-size: 1.05rem;
+            margin-bottom: 2rem;
+        }
+
+        /* ── Video ── */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: #000;
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-bottom: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .video-container video,
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* ── Key Takeaways ── */
+        .takeaways {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .takeaways h2 {
+            font-size: 1.25rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .takeaway-item {
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .takeaway-item .icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            background: rgba(59, 130, 246, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 0.75rem;
+            margin-top: 2px;
+        }
+
+        .takeaway-item p {
+            color: var(--muted);
+        }
+
+        .takeaway-item strong {
+            color: var(--text);
+        }
+
+        /* ── Next Video Countdown ── */
+        .next-video {
+            text-align: center;
+            padding: 2rem;
+            background: var(--card);
+            border-radius: var(--radius);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            margin-bottom: 2.5rem;
+        }
+
+        .next-video h3 {
+            font-size: 1rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .countdown-unit {
+            text-align: center;
+        }
+
+        .countdown-unit .number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text);
+            display: block;
+        }
+
+        .countdown-unit .label {
+            font-size: 0.75rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* ── Share ── */
+        .share-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            color: var(--muted);
+            font-size: 0.875rem;
+        }
+
+        .share-row a {
+            color: var(--muted);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 80px;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .share-row a:hover {
+            color: var(--text);
+            border-color: var(--accent);
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 1.5rem 1rem 3rem;
+            }
+
+            .takeaways {
+                padding: 1.5rem;
+            }
+
+            .countdown {
+                gap: 1rem;
+            }
+
+            .countdown-unit .number {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Top Bar -->
+    <div class="launch-bar">
+        🚀 Free Training Series — Video {{PLC_NUMBER}} of 3
+    </div>
+
+    <div class="container">
+
+        <!-- Episode Header -->
+        <span class="episode-badge">Video {{PLC_NUMBER}} of 3</span>
+        <h1>{{PLC_TITLE}}</h1>
+        <p class="subtitle">{{PLC_SUBTITLE}}</p>
+
+        <!-- Video -->
+        <div class="video-container">
+            <video controls poster="{{THUMBNAIL_URL}}" playsinline>
+                <source src="{{VIDEO_URL}}" type="video/mp4">
+            </video>
+        </div>
+
+        <!-- Key Takeaways -->
+        <div class="takeaways">
+            <h2>📌 Key Takeaways</h2>
+            <div class="takeaway-item">
+                <div class="icon">1</div>
+                <div>
+                    <strong>{{TAKEAWAY_1_TITLE}}</strong>
+                    <p>{{TAKEAWAY_1_DESC}}</p>
+                </div>
+            </div>
+            <div class="takeaway-item">
+                <div class="icon">2</div>
+                <div>
+                    <strong>{{TAKEAWAY_2_TITLE}}</strong>
+                    <p>{{TAKEAWAY_2_DESC}}</p>
+                </div>
+            </div>
+            <div class="takeaway-item">
+                <div class="icon">3</div>
+                <div>
+                    <strong>{{TAKEAWAY_3_TITLE}}</strong>
+                    <p>{{TAKEAWAY_3_DESC}}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Next Video Countdown -->
+        <div class="next-video">
+            <h3>⏳ Next Video Drops In</h3>
+            <div class="countdown" id="countdown">
+                <div class="countdown-unit"><span class="number" id="cd-days">0</span><span class="label">Days</span>
+                </div>
+                <div class="countdown-unit"><span class="number" id="cd-hours">0</span><span class="label">Hours</span>
+                </div>
+                <div class="countdown-unit"><span class="number" id="cd-min">0</span><span class="label">Min</span>
+                </div>
+                <div class="countdown-unit"><span class="number" id="cd-sec">0</span><span class="label">Sec</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Share -->
+        <div class="share-row">
+            <span>Share this video:</span>
+            <a href="https://twitter.com/intent/tweet?url={{PAGE_URL}}&text={{SHARE_TEXT}}" target="_blank">𝕏</a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{PAGE_URL}}" target="_blank">Facebook</a>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{PAGE_URL}}" target="_blank">LinkedIn</a>
+        </div>
+
+    </div>
+
+    <script>
+        // Countdown to next video release
+        const TARGET = new Date('{{NEXT_VIDEO_DATE}}').getTime(); // e.g. "2026-03-15T09:00:00"
+        function tick() {
+            const diff = Math.max(0, TARGET - Date.now());
+            const d = Math.floor(diff / 86400000);
+            const h = Math.floor((diff % 86400000) / 3600000);
+            const m = Math.floor((diff % 3600000) / 60000);
+            const s = Math.floor((diff % 60000) / 1000);
+            document.getElementById('cd-days').textContent = d;
+            document.getElementById('cd-hours').textContent = h;
+            document.getElementById('cd-min').textContent = m;
+            document.getElementById('cd-sec').textContent = s;
+            if (diff > 0) requestAnimationFrame(tick);
+        }
+        tick();
+        setInterval(tick, 1000);
+    </script>
+
+</body>
+
+</html>

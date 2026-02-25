@@ -1,0 +1,14 @@
+{
+    "name": "funnel-architect-plugins",
+    "owner": {
+        "name": "Funnel Architect",
+        "url": "https://github.com/funnel-architect"
+    },
+    "plugins": [
+        {
+            "name": "sales-funnel",
+            "source": "./",
+            "description": "Full-stack sales funnel architect — build high-converting funnels with optimized UI/UX, page speed, mobile responsiveness, and deploy anywhere."
+        }
+    ]
+}

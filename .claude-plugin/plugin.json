@@ -1,0 +1,29 @@
+{
+  "name": "sales-funnel",
+  "version": "1.0.0",
+  "description": "Turn Claude into a full-stack sales funnel architect. Build high-converting funnels with optimized UI/UX, page speed, mobile responsiveness, and deploy to any platform.",
+  "author": {
+    "name": "Funnel Architect",
+    "url": "https://github.com/funnel-architect"
+  },
+  "homepage": "https://github.com/funnel-architect/sales-funnel-plugin",
+  "repository": "https://github.com/funnel-architect/sales-funnel-plugin",
+  "license": "MIT",
+  "keywords": [
+    "sales-funnel",
+    "landing-page",
+    "conversion",
+    "marketing",
+    "page-speed",
+    "mobile-responsive",
+    "deployment",
+    "ui-ux",
+    "lead-generation",
+    "webinar",
+    "saas",
+    "direct-response",
+    "ecommerce",
+    "copywriting",
+    "analytics"
+  ]
+}

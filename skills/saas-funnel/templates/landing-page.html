@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Product Name] — [One-Line Value Prop]</title>
+    <meta name="description" content="[Product Name] helps [audience] [achieve outcome]. Start your free trial today.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+    </noscript>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --bg: #09090B;
+            --bg-secondary: #18181B;
+            --bg-card: #27272A;
+            --text: #FAFAFA;
+            --text-secondary: #A1A1AA;
+            --text-muted: #71717A;
+            --accent: #6366F1;
+            --accent-hover: #4F46E5;
+            --accent-glow: rgba(99, 102, 241, 0.25);
+            --border: rgba(255, 255, 255, 0.08);
+            --success: #22C55E;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1120px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* NAV */
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .nav-cta {
+            padding: 8px 20px;
+            background: var(--accent);
+            color: white;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .nav-cta:hover {
+            background: var(--accent-hover);
+        }
+
+        /* HERO */
+        .hero {
+            text-align: center;
+            padding: 80px 20px 48px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 100px;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 16px;
+            letter-spacing: -0.03em;
+        }
+
+        @media (min-width: 768px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+        }
+
+        .hero .subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-primary {
+            padding: 14px 28px;
+            background: var(--accent);
+            color: white;
+            font-size: 1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            min-height: 48px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 14px var(--accent-glow);
+        }
+
+        .cta-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px var(--accent-glow);
+        }
+
+        .cta-ghost {
+            padding: 14px 28px;
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            min-height: 48px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .cta-ghost:hover {
+            border-color: var(--text-muted);
+            color: var(--text);
+        }
+
+        .hero-note {
+            margin-top: 12px;
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+        }
+
+        .product-screenshot {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 20px 80px;
+        }
+
+        .product-screenshot .frame {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.9375rem;
+        }
+
+        /* SOCIAL PROOF */
+        .social-proof {
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 32px 20px;
+            text-align: center;
+        }
+
+        .social-proof p {
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .logos {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            opacity: 0.4;
+        }
+
+        .logos span {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        /* FEATURES */
+        .features {
+            padding: 80px 20px;
+        }
+
+        .features .section-label {
+            text-align: center;
+            font-size: 0.8125rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 12px;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 48px;
+            letter-spacing: -0.02em;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        @media (min-width: 768px) {
+            .features-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .feature-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .feature-card:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            margin-bottom: 16px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.0625rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+        }
+
+        /* HOW IT WORKS */
+        .how-it-works {
+            padding: 80px 20px;
+            background: var(--bg-secondary);
+        }
+
+        .how-it-works h2 {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 48px;
+            letter-spacing: -0.02em;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .steps {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step-num {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin: 0 auto 16px;
+        }
+
+        .step h3 {
+            margin-bottom: 8px;
+        }
+
+        .step p {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+        }
+
+        /* PRICING */
+        .pricing {
+            padding: 80px 20px;
+        }
+
+        .pricing h2 {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .pricing .subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .pricing-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .price-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px 24px;
+            position: relative;
+        }
+
+        .price-card.featured {
+            border-color: var(--accent);
+            box-shadow: 0 0 40px var(--accent-glow);
+        }
+
+        .price-card.featured::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .plan-name {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .plan-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .plan-price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        .plan-desc {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: 24px;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        .plan-features li {
+            padding: 6px 0;
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .plan-features li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        .plan-cta {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            min-height: 44px;
+        }
+
+        .plan-cta-primary {
+            background: var(--accent);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .plan-cta-primary:hover {
+            background: var(--accent-hover);
+        }
+
+        .plan-cta-secondary {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .plan-cta-secondary:hover {
+            border-color: var(--text-muted);
+        }
+
+        /* FINAL CTA */
+        .final-cta {
+            padding: 80px 20px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--bg) 0%, var(--bg-secondary) 100%);
+        }
+
+        .final-cta h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .final-cta p {
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin: 0 auto 32px;
+        }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 32px 20px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.8125rem;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">[Product]</div>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#">Docs</a>
+            <a href="#" class="nav-cta">Get Started</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-badge">Now in Public Beta</div>
+        <h1>[Verb] Your [Process] [X]x Faster</h1>
+        <p class="subtitle">
+            [Product Name] helps [audience] [desired outcome] — so you can
+            [ultimate benefit] without [common frustration].
+        </p>
+        <div class="hero-ctas">
+            <a href="signup.html" class="cta-primary">Start Free Trial →</a>
+            <a href="#" class="cta-ghost">Watch Demo</a>
+        </div>
+        <p class="hero-note">Free 14-day trial · No credit card required</p>
+    </section>
+
+    <div class="product-screenshot">
+        <div class="frame">
+            <!-- Replace with actual product screenshot -->
+            [Product Screenshot / Demo GIF Here]
+        </div>
+    </div>
+
+    <section class="social-proof">
+        <div class="container">
+            <p>Trusted by teams at</p>
+            <div class="logos">
+                <span>[Company 1]</span>
+                <span>[Company 2]</span>
+                <span>[Company 3]</span>
+                <span>[Company 4]</span>
+                <span>[Company 5]</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <p class="section-label">Features</p>
+            <h2>Everything You Need to [Outcome]</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Feature One</h3>
+                    <p>Brief description of what this feature does and the benefit it provides to the user.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Feature Two</h3>
+                    <p>Brief description of what this feature does and the benefit it provides to the user.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Feature Three</h3>
+                    <p>Brief description of what this feature does and the benefit it provides to the user.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Feature Four</h3>
+                    <p>Brief description of what this feature does and the benefit it provides to the user.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Feature Five</h3>
+                    <p>Brief description of what this feature does and the benefit it provides to the user.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Feature Six</h3>
+                    <p>Brief description of what this feature does and the benefit it provides to the user.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works">
+        <h2>How It Works</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <h3>Sign Up</h3>
+                <p>Create your free account in 30 seconds. No credit card needed.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <h3>Configure</h3>
+                <p>Set up your [workspace/project] with our guided onboarding.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <h3>See Results</h3>
+                <p>Start [getting value] within your first [hour/day].</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2>Simple, Transparent Pricing</h2>
+            <p class="subtitle">Start free. Upgrade when you're ready.</p>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <div class="plan-name">Starter</div>
+                    <div class="plan-price">$0<span>/mo</span></div>
+                    <p class="plan-desc">For individuals getting started</p>
+                    <ul class="plan-features">
+                        <li>Up to [X] [units]</li>
+                        <li>[Core feature]</li>
+                        <li>Community support</li>
+                    </ul>
+                    <a href="signup.html" class="plan-cta plan-cta-secondary">Get Started Free</a>
+                </div>
+                <div class="price-card featured">
+                    <div class="plan-name">Pro</div>
+                    <div class="plan-price">$29<span>/mo</span></div>
+                    <p class="plan-desc">For growing teams</p>
+                    <ul class="plan-features">
+                        <li>Unlimited [units]</li>
+                        <li>[All Starter features]</li>
+                        <li>[Premium feature 1]</li>
+                        <li>[Premium feature 2]</li>
+                        <li>Priority support</li>
+                    </ul>
+                    <button class="plan-cta plan-cta-primary">Start Free Trial</button>
+                </div>
+                <div class="price-card">
+                    <div class="plan-name">Enterprise</div>
+                    <div class="plan-price">Custom</div>
+                    <p class="plan-desc">For large organizations</p>
+                    <ul class="plan-features">
+                        <li>Everything in Pro</li>
+                        <li>SSO & SAML</li>
+                        <li>Dedicated support</li>
+                        <li>Custom integrations</li>
+                        <li>SLA guarantee</li>
+                    </ul>
+                    <a href="#" class="plan-cta plan-cta-secondary">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="final-cta">
+        <h2>Ready to [Achieve Outcome]?</h2>
+        <p>Join [X,000+] teams already using [Product] to [benefit].</p>
+        <a href="signup.html" class="cta-primary">Start Your Free Trial →</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 [Product Name]. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

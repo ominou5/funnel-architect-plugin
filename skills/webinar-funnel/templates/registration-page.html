@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Masterclass: [Webinar Topic]</title>
+    <meta name="description"
+        content="Register for the free live masterclass and discover how to [key benefit] in [timeframe].">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap">
+    </noscript>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #0F172A;
+            --bg-card: #1E293B;
+            --text: #F8FAFC;
+            --text-secondary: #CBD5E1;
+            --text-muted: #94A3B8;
+            --accent: #8B5CF6;
+            --accent-hover: #7C3AED;
+            --accent-glow: rgba(139, 92, 246, 0.3);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 48px 16px;
+        }
+
+        .hero-inner {
+            max-width: 960px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .hero-inner {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 100px;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        .subtitle {
+            font-size: 1.0625rem;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .event-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+        }
+
+        .learnings {
+            margin-bottom: 32px;
+        }
+
+        .learning {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            padding: 6px 0;
+        }
+
+        .learning-check {
+            color: var(--accent);
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .learning span {
+            color: var(--text-secondary);
+        }
+
+        .reg-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px 24px;
+        }
+
+        .reg-card h2 {
+            font-size: 1.25rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: 1rem;
+            font-family: inherit;
+            min-height: 48px;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .cta-primary {
+            display: block;
+            width: 100%;
+            padding: 16px 32px;
+            background: var(--accent);
+            color: white;
+            font-size: 1.0625rem;
+            font-weight: 700;
+            font-family: inherit;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            min-height: 52px;
+            box-shadow: 0 4px 14px var(--accent-glow);
+        }
+
+        .cta-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--accent-glow);
+        }
+
+        .seats-left {
+            text-align: center;
+            margin-top: 12px;
+            color: var(--text-muted);
+            font-size: 0.8125rem;
+        }
+
+        .seats-left strong {
+            color: #F59E0B;
+        }
+
+        .host {
+            padding: 64px 16px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .host-inner {
+            max-width: 720px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .host-inner {
+                flex-direction: row;
+                text-align: left;
+            }
+        }
+
+        .host-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 3px solid var(--accent);
+            flex-shrink: 0;
+        }
+
+        .host-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .host-title {
+            color: var(--accent);
+            font-size: 0.9375rem;
+            margin-bottom: 8px;
+        }
+
+        .host-bio {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="hero">
+        <div class="hero-inner">
+            <div>
+                <div class="badge">Free Live Masterclass</div>
+                <h1>How to [Desired Outcome] Without [Pain Point]</h1>
+                <p class="subtitle">
+                    Join this free [60]-minute masterclass and discover the exact framework
+                    used by [authority proof] to [specific, measurable result].
+                </p>
+                <div class="event-meta">
+                    <div class="meta-item">📅 [Date]</div>
+                    <div class="meta-item">🕐 [Time] [Timezone]</div>
+                    <div class="meta-item">⏱ [Duration] minutes</div>
+                </div>
+                <div class="learnings">
+                    <div class="learning">
+                        <span class="learning-check">✦</span>
+                        <span>Discover the #1 reason [audience] struggle with [problem]</span>
+                    </div>
+                    <div class="learning">
+                        <span class="learning-check">✦</span>
+                        <span>Learn the [number]-step system to [achieve result]</span>
+                    </div>
+                    <div class="learning">
+                        <span class="learning-check">✦</span>
+                        <span>Walk away with a ready-to-use [deliverable/framework]</span>
+                    </div>
+                </div>
+            </div>
+
+            <form class="reg-card" action="#" method="POST">
+                <h2>Save Your Spot</h2>
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="First name" required aria-label="First name">
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-input" placeholder="Email address" required
+                        aria-label="Email address">
+                </div>
+                <button type="submit" class="cta-primary">
+                    Reserve My Seat →
+                </button>
+                <p class="seats-left">🔥 <strong>47 spots</strong> remaining</p>
+            </form>
+        </div>
+    </section>
+
+    <section class="host">
+        <div class="host-inner">
+            <!-- Replace with actual photo -->
+            <div class="host-photo" role="img" aria-label="Host photo"></div>
+            <div>
+                <div class="host-name">[Host Name]</div>
+                <div class="host-title">[Title / Credential]</div>
+                <p class="host-bio">
+                    [2–3 sentences about the host's expertise and why they're qualified to teach
+                    this topic. Include specific results or credentials.]
+                </p>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply Now — {{BRAND}}</title>
+    <meta name="description" content="{{META_DESCRIPTION}}">
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #09090b;
+            --surface: #18181b;
+            --card: #1c1c22;
+            --text: #fafafa;
+            --muted: #a1a1aa;
+            --accent: #a78bfa;
+            --accent-hover: #8b5cf6;
+            --gold: #fbbf24;
+            --radius: 16px;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem 4rem;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .hero .exclusive {
+            display: inline-block;
+            padding: 0.375rem 1rem;
+            background: rgba(167, 139, 250, 0.1);
+            border: 1px solid rgba(167, 139, 250, 0.25);
+            border-radius: 80px;
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(1.75rem, 4.5vw, 3rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero .subtext {
+            color: var(--muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ── Two-Column Layout ── */
+        .layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        /* ── Left: Qualifiers ── */
+        .qualifiers h2 {
+            font-size: 1.25rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .qual-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .qual-list.for-you li {
+            padding: 0.625rem 0;
+            padding-left: 1.75rem;
+            position: relative;
+            color: var(--muted);
+        }
+
+        .qual-list.for-you li::before {
+            content: '✅';
+            position: absolute;
+            left: 0;
+        }
+
+        .qual-list.not-for-you li {
+            padding: 0.625rem 0;
+            padding-left: 1.75rem;
+            position: relative;
+            color: var(--muted);
+        }
+
+        .qual-list.not-for-you li::before {
+            content: '❌';
+            position: absolute;
+            left: 0;
+        }
+
+        /* Case Study */
+        .case-study {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            border-left: 3px solid var(--gold);
+        }
+
+        .case-study .result {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--gold);
+            margin-bottom: 0.25rem;
+        }
+
+        .case-study .context {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .case-study cite {
+            color: var(--text);
+            font-size: 0.85rem;
+            font-style: normal;
+            font-weight: 600;
+            display: block;
+            margin-top: 0.75rem;
+        }
+
+        /* ── Right: Application Form ── */
+        .form-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .form-card h2 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-card .form-sub {
+            color: var(--muted);
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.375rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: var(--bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: var(--text);
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: var(--accent);
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 80px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s;
+            margin-top: 0.5rem;
+        }
+
+        .submit-btn:hover {
+            background: var(--accent-hover);
+            transform: scale(1.02);
+        }
+
+        .form-note {
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.8rem;
+            margin-top: 0.75rem;
+        }
+
+        @media (max-width: 768px) {
+            .layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .container {
+                padding: 2rem 1rem 3rem;
+            }
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Hero -->
+        <section class="hero">
+            <span class="exclusive">Application Only</span>
+            <h1>{{HEADLINE_PART_1}} <span>{{HEADLINE_HIGHLIGHT}}</span></h1>
+            <p class="subtext">{{SUBHEADLINE}}</p>
+        </section>
+
+        <!-- Two-Column Layout -->
+        <div class="layout">
+
+            <!-- Left: Qualifiers + Case Study -->
+            <div class="qualifiers">
+                <h2>This is for you if…</h2>
+                <ul class="qual-list for-you">
+                    <li>{{FOR_YOU_1}}</li>
+                    <li>{{FOR_YOU_2}}</li>
+                    <li>{{FOR_YOU_3}}</li>
+                    <li>{{FOR_YOU_4}}</li>
+                </ul>
+
+                <h2>This is NOT for you if…</h2>
+                <ul class="qual-list not-for-you">
+                    <li>{{NOT_FOR_YOU_1}}</li>
+                    <li>{{NOT_FOR_YOU_2}}</li>
+                    <li>{{NOT_FOR_YOU_3}}</li>
+                </ul>
+
+                <div class="case-study">
+                    <div class="result">{{RESULT — e.g. "$47K in 60 days"}}</div>
+                    <div class="context">{{CONTEXT — e.g. "Starting from zero, using our exact framework"}}</div>
+                    <cite>— {{CLIENT_NAME}}, {{CLIENT_TITLE}}</cite>
+                </div>
+            </div>
+
+            <!-- Right: Application Form -->
+            <div class="form-card">
+                <h2>Apply Now</h2>
+                <p class="form-sub">Takes 2 minutes. We review every application personally.</p>
+
+                <form action="{{FORM_ACTION}}" method="POST">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="revenue">Current Monthly Revenue</label>
+                        <select id="revenue" name="revenue" required>
+                            <option value="">Select…</option>
+                            <option value="0-5k">$0 – $5K</option>
+                            <option value="5k-10k">$5K – $10K</option>
+                            <option value="10k-25k">$10K – $25K</option>
+                            <option value="25k-50k">$25K – $50K</option>
+                            <option value="50k+">$50K+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="goal">What's your #1 goal for the next 90 days?</label>
+                        <textarea id="goal" name="goal" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="budget">Investment Level</label>
+                        <select id="budget" name="budget" required>
+                            <option value="">Select…</option>
+                            <option value="1k-3k">$1K – $3K</option>
+                            <option value="3k-5k">$3K – $5K</option>
+                            <option value="5k-10k">$5K – $10K</option>
+                            <option value="10k+">$10K+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="commitment">Commitment level (1–10)</label>
+                        <select id="commitment" name="commitment" required>
+                            <option value="">Select…</option>
+                            <option value="10">10 — All in</option>
+                            <option value="9">9</option>
+                            <option value="8">8</option>
+                            <option value="7">7</option>
+                            <option value="6">6</option>
+                            <option value="5">5 or below</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Application →</button>
+                    <p class="form-note">🔒 Your information is confidential and secure.</p>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
