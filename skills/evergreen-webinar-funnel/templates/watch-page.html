@@ -264,7 +264,8 @@
                 Session In Progress
             </div>
             <div class="viewer-count">
-                <strong id="viewerCount">{{INITIAL_VIEWERS — e.g. 127}}</strong> watching now
+                <!-- default: 127 -->
+                <strong id="viewerCount">{{INITIAL_VIEWERS}}</strong> watching now
             </div>
         </div>
     </div>
@@ -281,25 +282,23 @@
             </video>
         </div>
 
-        <!-- Offer CTA — revealed at {{CTA_REVEAL_SECONDS}} seconds -->
-        <div class="offer-panel" id="offerPanel">
+        <!-- Offer CTA — revealed after data-reveal-seconds seconds (default: 2400 = 40 min) -->
+        <div class="offer-panel" id="offerPanel" data-reveal-seconds="{{CTA_REVEAL_SECONDS}}">
             <div class="offer-badge">Limited Time Offer</div>
-            <h2>{{OFFER_HEADLINE — e.g. "Get Instant Access to the Full Program"}}</h2>
-            <p class="offer-desc">
-                {{OFFER_DESCRIPTION — e.g. "Everything you need to implement the system
-                you just learned — templates, scripts, and live support."}}
-            </p>
-            <a href="{{OFFER_URL}}" class="cta-primary">
-                {{CTA_TEXT — e.g. "Claim Your Spot →"}}
-            </a>
-            <p class="offer-note">
-                {{OFFER_NOTE — e.g. "30-day money-back guarantee · Instant access"}}
-            </p>
+            <!-- e.g. "Get Instant Access to the Full Program" -->
+            <h2>{{OFFER_HEADLINE}}</h2>
+            <!-- e.g. "Everything you need to implement the system you just learned." -->
+            <p class="offer-desc">{{OFFER_DESCRIPTION}}</p>
+            <!-- e.g. "Claim Your Spot →" -->
+            <a href="{{OFFER_URL}}" class="cta-primary">{{CTA_TEXT}}</a>
+            <!-- e.g. "30-day money-back guarantee · Instant access" -->
+            <p class="offer-note">{{OFFER_NOTE}}</p>
         </div>
 
         <!-- Replay Expiry -->
         <div class="replay-notice">
-            ⏳ This replay expires in <strong id="replayTimer">{{REPLAY_HOURS — e.g. 48}} hours</strong>.
+            <!-- default: 48 -->
+            ⏳ This replay expires in <strong id="replayTimer">{{REPLAY_HOURS}} hours</strong>.
             Watch now — it won't be available later.
         </div>
 
@@ -307,7 +306,7 @@
 
     <script>
         // ── Timed CTA Reveal ──
-        const CTA_REVEAL_SECONDS = {{ CTA_REVEAL_SECONDS — e.g.2400}}; // 40 min default
+        const CTA_REVEAL_SECONDS = parseInt(document.getElementById('offerPanel').dataset.revealSeconds) || 2400;
         const video = document.getElementById('webinarVideo');
         const offerPanel = document.getElementById('offerPanel');
 

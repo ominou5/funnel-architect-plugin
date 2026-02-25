@@ -135,16 +135,15 @@ The plugin runs checks automatically as you build:
 "Write 5 headline variants for A/B testing my SaaS landing page"
 ```
 
-## Pre-Configured Integrations
+## Integrations
 
-The plugin includes MCP server definitions for:
-- **Analytics**: Google Analytics 4
-- **Payments**: Stripe
-- **CRM**: HubSpot
-- **Email**: Mailchimp
-- **Hosting**: Vercel, Firebase, Supabase
+**Pre-configured** in `.mcp.json`:
+- **Payments**: Stripe (`@stripe/agent-toolkit`)
 
-Add your API keys to activate. See `.mcp.json` for configuration.
+**Supported via skills** (add your own MCP server):
+- Analytics (GA4), CRM (HubSpot), Email (Mailchimp), Hosting (Vercel, Firebase, Supabase)
+
+See [MCP_INTEGRATIONS.md](MCP_INTEGRATIONS.md) for setup instructions.
 
 ## Contributing
 
