@@ -8,7 +8,7 @@ Thank you for your interest in contributing! This plugin is open-source under th
 2. **Clone** your fork: `git clone https://github.com/YOUR_USERNAME/funnel-architect-plugin.git`
 3. **Branch** from `main`: `git checkout -b feat/my-feature`
 4. **Make your changes** following the guidelines below
-5. **Test** locally: `claude --plugin-dir ./`
+5. **Test** locally: run `claude` from inside the plugin directory
 6. **Push** and open a PR
 
 ## Branch Naming
@@ -85,7 +85,7 @@ description: >
 ## Pull Request Process
 
 ### Before Submitting
-- [ ] Tested locally with `claude --plugin-dir ./`
+- [ ] Tested locally by running `claude` from inside the plugin directory
 - [ ] Templates are mobile-responsive (test at 375px width)
 - [ ] No hardcoded API keys, secrets, or personal data
 - [ ] SKILL.md frontmatter is valid YAML
@@ -101,7 +101,7 @@ Brief description of what this PR adds or fixes.
 Why this change is needed — what problem does it solve?
 
 ## Testing
-How you tested it (e.g., "Ran `claude --plugin-dir ./` and built a webinar funnel").
+How you tested it (e.g., "Ran `claude` from the plugin directory and built a webinar funnel").
 
 ## Screenshots (if applicable)
 Include screenshots of any template output.

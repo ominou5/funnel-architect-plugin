@@ -24,8 +24,11 @@ git clone https://github.com/ominou5/funnel-architect-plugin.git
 # Add to your Claude Code plugins directory
 # (see Claude Code docs for plugin installation)
 
-# Start building
-claude "Build me an opt-in funnel for a free marketing checklist"
+# Start Claude Code in your project
+claude
+
+# Then ask:
+# "Build me an opt-in funnel for a free marketing checklist"
 ```
 
 ## Plugin Structure
