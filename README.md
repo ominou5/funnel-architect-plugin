@@ -1,5 +1,7 @@
 # 🚀 Funnel Architect — Claude Code Plugin
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 A comprehensive Claude Code plugin for building high-converting sales funnels. Strategy, design, copy, deployment, and optimization — all inside your editor.
 
 ## What It Does
@@ -144,7 +146,17 @@ Add your API keys to activate. See `.mcp.json` for configuration.
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on submitting templates, skills, and improvements.
+We welcome PRs! The fastest way to contribute:
+
+1. **Fork** → **Branch** (`feat/`, `fix/`, `docs/`) → **PR**
+2. Test locally with `claude --plugin-dir ./`
+3. Follow [Conventional Commits](https://www.conventionalcommits.org/) for commit messages
+
+**Highest-impact contributions**: new funnel templates, copy frameworks, and skill improvements.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for full guidelines, PR template, and code standards.
+
+Found a security issue? See [SECURITY.md](SECURITY.md).
 
 ## License
 

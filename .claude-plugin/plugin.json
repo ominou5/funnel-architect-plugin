@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "Turn Claude into a full-stack sales funnel architect. Build high-converting funnels with optimized UI/UX, page speed, mobile responsiveness, and deploy to any platform.",
   "author": {
-    "name": "Funnel Architect",
-    "url": "https://github.com/funnel-architect"
+    "name": "Sam Rexford",
+    "organization": "Agashic AI",
+    "url": "https://github.com/ominou5"
   },
-  "homepage": "https://github.com/funnel-architect/sales-funnel-plugin",
-  "repository": "https://github.com/funnel-architect/sales-funnel-plugin",
+  "homepage": "https://github.com/ominou5/funnel-architect-plugin",
+  "repository": "https://github.com/ominou5/funnel-architect-plugin",
   "license": "MIT",
   "keywords": [
     "sales-funnel",
