@@ -63,9 +63,9 @@ funnel-architect-plugin/
 │   ├── tripwire-funnel/      # Tripwire + templates
 │   ├── challenge-funnel/     # Challenge + templates
 │   ├── application-funnel/   # Application + templates
-│   ├── evergreen-webinar-funnel/
-│   ├── high-ticket-funnel/
-│   ├── membership-funnel/
+│   ├── evergreen-webinar-funnel/ # Evergreen webinar + templates
+│   ├── high-ticket-funnel/   # High-ticket + templates
+│   ├── membership-funnel/    # Membership + templates
 │   ├── ecommerce-funnel/     # E-commerce + templates
 │   ├── deploy-netlify/       # Netlify deployment
 │   ├── deploy-vercel/        # Vercel deployment
@@ -78,7 +78,6 @@ funnel-architect-plugin/
 │   ├── lighthouse-audit.js   # Performance audit
 │   └── validate-funnel-structure.js
 ├── .mcp.json                 # Pre-configured MCP servers
-├── settings.json             # Default agent config
 ├── marketplace.json          # Distribution metadata
 ├── CHANGELOG.md
 ├── CONTRIBUTING.md

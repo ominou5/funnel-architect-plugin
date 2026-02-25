@@ -14,6 +14,7 @@ All notable changes to the Funnel Architect plugin will be documented in this fi
 - 4 deployment skills: deploy-netlify, deploy-vercel, deploy-cloudflare, dns-management
 - 2 integration skills: analytics-setup, marketing-stack
 - 12 funnel type skills: optin, webinar, saas, vsl, product-launch, tripwire, challenge, application, evergreen-webinar, high-ticket, membership, ecommerce
+- 16 production-ready HTML templates across all 12 funnel types
 
 #### Agents (5)
 - funnel-builder, conversion-optimizer, page-speed-optimizer, copy-doctor, deploy-assistant

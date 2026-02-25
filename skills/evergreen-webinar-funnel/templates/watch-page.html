@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{WEBINAR_TITLE}} — Watch Now</title>
+    <meta name="description" content="Watch the masterclass on {{TOPIC}} and discover {{KEY_BENEFIT}}.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0a0a1a;
+            --surface: #12122a;
+            --card: #1a1a3a;
+            --text: #f0f0ff;
+            --muted: #8888b0;
+            --accent: #6366f1;
+            --accent-hover: #4f46e5;
+            --accent-glow: rgba(99, 102, 241, 0.25);
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --border: rgba(255, 255, 255, 0.08);
+            --radius: 16px;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Live Bar ── */
+        .live-bar {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 20px;
+        }
+
+        .live-bar-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .live-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8125rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: #ef4444;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.4;
+            }
+        }
+
+        .viewer-count {
+            font-size: 0.8125rem;
+            color: var(--muted);
+        }
+
+        .viewer-count strong {
+            color: var(--text);
+        }
+
+        /* ── Container ── */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        h1 {
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        /* ── Video Player ── */
+        .video-wrap {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: #000;
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+        }
+
+        .video-wrap video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Hide native controls scrub bar — show play/volume only */
+        .video-wrap video::-webkit-media-controls-timeline {
+            display: none;
+        }
+
+        .video-wrap video::-webkit-media-controls-current-time-display,
+        .video-wrap video::-webkit-media-controls-time-remaining-display {
+            display: none;
+        }
+
+        /* ── CTA Panel (hidden until timed reveal) ── */
+        .offer-panel {
+            background: var(--card);
+            border: 2px solid var(--accent);
+            border-radius: var(--radius);
+            padding: 2rem;
+            text-align: center;
+            display: none;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .offer-panel.visible {
+            display: block;
+        }
+
+        .offer-badge {
+            display: inline-block;
+            padding: 4px 14px;
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 80px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--warning);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 16px;
+        }
+
+        .offer-panel h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .offer-panel .offer-desc {
+            color: var(--muted);
+            margin-bottom: 24px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-primary {
+            display: inline-block;
+            padding: 16px 40px;
+            background: var(--accent);
+            color: white;
+            font-size: 1.0625rem;
+            font-weight: 700;
+            font-family: inherit;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            min-height: 52px;
+            box-shadow: 0 4px 14px var(--accent-glow);
+        }
+
+        .cta-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--accent-glow);
+        }
+
+        .offer-note {
+            margin-top: 12px;
+            font-size: 0.8125rem;
+            color: var(--muted);
+        }
+
+        /* ── Replay Timer ── */
+        .replay-notice {
+            margin-top: 2rem;
+            padding: 16px 20px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--muted);
+        }
+
+        .replay-notice strong {
+            color: var(--warning);
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 1.5rem 1rem 3rem;
+            }
+
+            .offer-panel {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Live Bar -->
+    <div class="live-bar">
+        <div class="live-bar-inner">
+            <div class="live-indicator">
+                <span class="live-dot"></span>
+                Session In Progress
+            </div>
+            <div class="viewer-count">
+                <strong id="viewerCount">{{INITIAL_VIEWERS — e.g. 127}}</strong> watching now
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <h1>{{WEBINAR_TITLE}}</h1>
+
+        <!-- Video — no scrub bar, plays linearly -->
+        <div class="video-wrap">
+            <video id="webinarVideo" poster="{{THUMBNAIL_URL}}" playsinline autoplay>
+                <source src="{{VIDEO_URL}}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <!-- Offer CTA — revealed at {{CTA_REVEAL_SECONDS}} seconds -->
+        <div class="offer-panel" id="offerPanel">
+            <div class="offer-badge">Limited Time Offer</div>
+            <h2>{{OFFER_HEADLINE — e.g. "Get Instant Access to the Full Program"}}</h2>
+            <p class="offer-desc">
+                {{OFFER_DESCRIPTION — e.g. "Everything you need to implement the system
+                you just learned — templates, scripts, and live support."}}
+            </p>
+            <a href="{{OFFER_URL}}" class="cta-primary">
+                {{CTA_TEXT — e.g. "Claim Your Spot →"}}
+            </a>
+            <p class="offer-note">
+                {{OFFER_NOTE — e.g. "30-day money-back guarantee · Instant access"}}
+            </p>
+        </div>
+
+        <!-- Replay Expiry -->
+        <div class="replay-notice">
+            ⏳ This replay expires in <strong id="replayTimer">{{REPLAY_HOURS — e.g. 48}} hours</strong>.
+            Watch now — it won't be available later.
+        </div>
+
+    </div>
+
+    <script>
+        // ── Timed CTA Reveal ──
+        const CTA_REVEAL_SECONDS = {{ CTA_REVEAL_SECONDS — e.g.2400}}; // 40 min default
+        const video = document.getElementById('webinarVideo');
+        const offerPanel = document.getElementById('offerPanel');
+
+        video.addEventListener('timeupdate', () => {
+            if (video.currentTime >= CTA_REVEAL_SECONDS && !offerPanel.classList.contains('visible')) {
+                offerPanel.classList.add('visible');
+            }
+        });
+
+        // ── Simulated Viewer Count ──
+        const viewerEl = document.getElementById('viewerCount');
+        let viewers = parseInt(viewerEl.textContent) || 127;
+
+        setInterval(() => {
+            viewers += Math.floor(Math.random() * 5) - 2; // fluctuate ±2
+            viewers = Math.max(80, viewers); // floor at 80
+            viewerEl.textContent = viewers;
+        }, 8000);
+    </script>
+
+</body>
+
+</html>

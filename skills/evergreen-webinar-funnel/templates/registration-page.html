@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{WEBINAR_TITLE}} — Free On-Demand Masterclass</title>
+    <meta name="description"
+        content="Register for the free masterclass and discover how to {{KEY_BENEFIT}} in {{TIMEFRAME}}.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap">
+    </noscript>
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0a0a1a;
+            --surface: #12122a;
+            --card: #1a1a3a;
+            --text: #f0f0ff;
+            --muted: #8888b0;
+            --accent: #6366f1;
+            --accent-hover: #4f46e5;
+            --accent-glow: rgba(99, 102, 241, 0.25);
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --border: rgba(255, 255, 255, 0.08);
+            --radius: 16px;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 48px 16px;
+        }
+
+        .hero-inner {
+            max-width: 1000px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .hero-inner {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 100px;
+            font-size: 0.8125rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        h1 {
+            font-size: clamp(1.75rem, 4.5vw, 2.5rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+
+        .subtitle {
+            font-size: 1.0625rem;
+            color: var(--muted);
+            margin-bottom: 24px;
+        }
+
+        .learnings {
+            margin-bottom: 32px;
+        }
+
+        .learning {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            padding: 6px 0;
+        }
+
+        .learning-check {
+            color: var(--accent);
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .learning span {
+            color: var(--muted);
+        }
+
+        /* ── Registration Card ── */
+        .reg-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px 24px;
+        }
+
+        .reg-card h2 {
+            font-size: 1.25rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: 1rem;
+            font-family: inherit;
+            min-height: 48px;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .form-input::placeholder {
+            color: var(--muted);
+        }
+
+        /* ── Session Picker ── */
+        .session-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .session-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .session-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 14px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+
+        .session-option:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .session-option input[type="radio"] {
+            accent-color: var(--accent);
+            width: 16px;
+            height: 16px;
+        }
+
+        .session-option .session-text {
+            flex: 1;
+            font-size: 0.9375rem;
+        }
+
+        .session-option .session-urgency {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--warning);
+            text-transform: uppercase;
+        }
+
+        .session-option.selected {
+            border-color: var(--accent);
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        /* ── CTA ── */
+        .cta-primary {
+            display: block;
+            width: 100%;
+            padding: 16px 32px;
+            background: var(--accent);
+            color: white;
+            font-size: 1.0625rem;
+            font-weight: 700;
+            font-family: inherit;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            min-height: 52px;
+            box-shadow: 0 4px 14px var(--accent-glow);
+        }
+
+        .cta-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--accent-glow);
+        }
+
+        .reminder-opt {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            font-size: 0.8125rem;
+            color: var(--muted);
+        }
+
+        .reminder-opt input[type="checkbox"] {
+            accent-color: var(--accent);
+        }
+
+        .seats-left {
+            text-align: center;
+            margin-top: 12px;
+            color: var(--muted);
+            font-size: 0.8125rem;
+        }
+
+        .seats-left strong {
+            color: var(--warning);
+        }
+
+        /* ── Host ── */
+        .host {
+            padding: 64px 16px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .host-inner {
+            max-width: 720px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .host-inner {
+                flex-direction: row;
+                text-align: left;
+            }
+        }
+
+        .host-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 3px solid var(--accent);
+            flex-shrink: 0;
+        }
+
+        .host-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .host-title {
+            color: var(--accent);
+            font-size: 0.9375rem;
+            margin-bottom: 8px;
+        }
+
+        .host-bio {
+            color: var(--muted);
+            font-size: 0.9375rem;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="hero">
+        <div class="hero-inner">
+            <div>
+                <div class="badge">Free On-Demand Masterclass</div>
+                <h1>{{HEADLINE — e.g. "How to Scale Your Revenue Without Burning Out"}}</h1>
+                <p class="subtitle">
+                    {{SUBHEADLINE — e.g. "Join this free 60-minute session and discover the exact
+                    framework used by 500+ entrepreneurs to achieve predictable growth."}}
+                </p>
+                <div class="learnings">
+                    <div class="learning">
+                        <span class="learning-check">✦</span>
+                        <span>{{LEARNING_1 — e.g. "Discover why most funnels fail within 30 days"}}</span>
+                    </div>
+                    <div class="learning">
+                        <span class="learning-check">✦</span>
+                        <span>{{LEARNING_2 — e.g. "Learn the 3-step system to evergreen revenue"}}</span>
+                    </div>
+                    <div class="learning">
+                        <span class="learning-check">✦</span>
+                        <span>{{LEARNING_3 — e.g. "Walk away with a plug-and-play funnel template"}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <form class="reg-card" action="{{FORM_ACTION}}" method="POST">
+                <h2>Pick Your Session</h2>
+                <div class="form-group">
+                    <input type="text" class="form-input" name="first_name" placeholder="First name" required
+                        aria-label="First name">
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-input" name="email" placeholder="Email address" required
+                        aria-label="Email address">
+                </div>
+
+                <label class="session-label">Choose a time:</label>
+                <div class="session-options" id="sessionOptions">
+                    <!-- Sessions are generated dynamically by JS below -->
+                </div>
+
+                <button type="submit" class="cta-primary">
+                    Reserve My Spot →
+                </button>
+
+                <label class="reminder-opt">
+                    <input type="checkbox" name="sms_reminder" value="1">
+                    Send me an SMS reminder before my session
+                </label>
+
+                <p class="seats-left">🔥 <strong id="seatCount">47</strong> spots remaining for this session</p>
+            </form>
+        </div>
+    </section>
+
+    <section class="host">
+        <div class="host-inner">
+            <!-- Replace with actual photo -->
+            <div class="host-photo" role="img" aria-label="Host photo"></div>
+            <div>
+                <div class="host-name">{{HOST_NAME}}</div>
+                <div class="host-title">{{HOST_TITLE}}</div>
+                <p class="host-bio">
+                    {{HOST_BIO — 2–3 sentences about the host's expertise and why they're
+                    qualified to teach this topic. Include specific results or credentials.}}
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // ── Generate "next available" sessions ──
+        function getNextSessions() {
+            const now = new Date();
+            const addMin = (d, m) => new Date(d.getTime() + m * 60000);
+            const fmt = d => d.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+            const tomorrow = d => {
+                const t = new Date(d);
+                t.setDate(t.getDate() + 1);
+                return t;
+            };
+            const nextDayAt = h => {
+                const t = tomorrow(now);
+                t.setHours(h, 0, 0, 0);
+                return t;
+            };
+
+            return [
+                { label: `Starting in 15 minutes`, time: addMin(now, 15), urgency: 'Starting soon' },
+                { label: `Today at ${fmt(addMin(now, 60))}`, time: addMin(now, 60), urgency: '' },
+                { label: `Tomorrow at 10:00 AM`, time: nextDayAt(10), urgency: '' },
+                { label: `Tomorrow at 7:00 PM`, time: nextDayAt(19), urgency: '' },
+            ];
+        }
+
+        function renderSessions() {
+            const container = document.getElementById('sessionOptions');
+            const sessions = getNextSessions();
+            sessions.forEach((s, i) => {
+                const div = document.createElement('div');
+                div.className = 'session-option' + (i === 0 ? ' selected' : '');
+                div.innerHTML = `
+                    <input type="radio" name="session_time" value="${s.time.toISOString()}" ${i === 0 ? 'checked' : ''} required>
+                    <span class="session-text">${s.label}</span>
+                    ${s.urgency ? `<span class="session-urgency">${s.urgency}</span>` : ''}
+                `;
+                div.addEventListener('click', () => {
+                    container.querySelectorAll('.session-option').forEach(o => o.classList.remove('selected'));
+                    div.classList.add('selected');
+                    div.querySelector('input').checked = true;
+                });
+                container.appendChild(div);
+            });
+        }
+
+        renderSessions();
+    </script>
+</body>
+
+</html>

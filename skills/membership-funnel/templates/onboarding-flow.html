@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to {{MEMBERSHIP_NAME}} — Let's Get You Set Up</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #09090b;
+            --surface: #18181b;
+            --card: #27272a;
+            --text: #fafafa;
+            --muted: #a1a1aa;
+            --accent: #6366f1;
+            --accent-hover: #4f46e5;
+            --accent-glow: rgba(99, 102, 241, 0.25);
+            --success: #22c55e;
+            --border: rgba(255, 255, 255, 0.08);
+            --radius: 16px;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* ── Progress Bar ── */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--surface);
+            z-index: 100;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 25%;
+            background: linear-gradient(90deg, var(--accent), #818cf8);
+            border-radius: 0 2px 2px 0;
+            transition: width 0.5s ease;
+        }
+
+        /* ── Container ── */
+        .onboard-container {
+            max-width: 600px;
+            width: 100%;
+            padding: 80px 20px 60px;
+            margin: 0 auto;
+        }
+
+        /* ── Step Header ── */
+        .step-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .step-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .step-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 2px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .step-dot.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            box-shadow: 0 0 12px var(--accent-glow);
+        }
+
+        .step-dot.done {
+            background: var(--success);
+            border-color: var(--success);
+        }
+
+        .step-header h1 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .step-header p {
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
+        /* ── Step Panels ── */
+        .step-panel {
+            display: none;
+        }
+
+        .step-panel.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ── Forms ── */
+        .field-group {
+            margin-bottom: 20px;
+        }
+
+        .field-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .field-group input,
+        .field-group select,
+        .field-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-family: inherit;
+            font-size: 0.9375rem;
+            transition: border-color 0.2s;
+        }
+
+        .field-group input:focus,
+        .field-group select:focus,
+        .field-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        /* ── Goal Picker (checkboxes styled as cards) ── */
+        .goal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .goal-option {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .goal-option:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .goal-option.selected {
+            border-color: var(--accent);
+            background: rgba(99, 102, 241, 0.08);
+        }
+
+        .goal-option input {
+            display: none;
+        }
+
+        .goal-icon {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .goal-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        /* ── Feature Tour Cards ── */
+        .tour-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .tour-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .tour-body h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .tour-body p {
+            color: var(--muted);
+            font-size: 0.875rem;
+        }
+
+        /* ── Quick-Win Checklist ── */
+        .checklist {
+            list-style: none;
+        }
+
+        .checklist li {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .checklist li:hover {
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        .checklist li.checked {
+            border-color: var(--success);
+            background: rgba(34, 197, 94, 0.05);
+        }
+
+        .check-circle {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 2px solid var(--muted);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            transition: all 0.2s;
+        }
+
+        .checklist li.checked .check-circle {
+            background: var(--success);
+            border-color: var(--success);
+            color: white;
+        }
+
+        .check-text {
+            font-size: 0.9375rem;
+        }
+
+        .check-text a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* ── Buttons ── */
+        .btn-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            min-height: 48px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 4px 14px var(--accent-glow);
+            flex: 1;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--muted);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--muted);
+            color: var(--text);
+        }
+
+        /* ── Welcome Finish ── */
+        .finish-panel {
+            text-align: center;
+        }
+
+        .finish-emoji {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        .finish-panel h1 {
+            margin-bottom: 12px;
+        }
+
+        .finish-panel p {
+            color: var(--muted);
+            font-size: 1rem;
+            max-width: 400px;
+            margin: 0 auto 32px;
+        }
+
+        @media (max-width: 480px) {
+            .goal-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .btn-row {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <div class="onboard-container">
+
+        <!-- ─── Step 1: Personalization ─── -->
+        <div class="step-panel active" id="step1">
+            <div class="step-header">
+                <div class="step-indicator">
+                    <span class="step-dot active"></span>
+                    <span class="step-dot"></span>
+                    <span class="step-dot"></span>
+                    <span class="step-dot"></span>
+                </div>
+                <h1>Tell Us About You</h1>
+                <p>We'll personalize your experience based on your goals.</p>
+            </div>
+
+            <div class="field-group">
+                <label for="displayName">What should we call you?</label>
+                <input type="text" id="displayName" placeholder="{{DISPLAY_NAME_PLACEHOLDER — e.g. 'Your first name'}}">
+            </div>
+
+            <div class="field-group">
+                <label for="experience">Where are you on your journey?</label>
+                <select id="experience">
+                    <option value="" disabled selected>Select your level</option>
+                    <option value="beginner">{{LEVEL_1 — e.g. "Just getting started"}}</option>
+                    <option value="intermediate">{{LEVEL_2 — e.g. "Some experience"}}</option>
+                    <option value="advanced">{{LEVEL_3 — e.g. "Experienced, looking to level up"}}</option>
+                </select>
+            </div>
+
+            <label style="font-size: 0.875rem; font-weight: 600; margin-bottom: 12px; display: block;">
+                What are your top goals? <span style="color: var(--muted);">(pick up to 3)</span>
+            </label>
+            <div class="goal-grid">
+                <label class="goal-option">
+                    <input type="checkbox" name="goal" value="goal1">
+                    <div class="goal-icon">🚀</div>
+                    <div class="goal-label">{{GOAL_1 — e.g. "Grow revenue"}}</div>
+                </label>
+                <label class="goal-option">
+                    <input type="checkbox" name="goal" value="goal2">
+                    <div class="goal-icon">📈</div>
+                    <div class="goal-label">{{GOAL_2 — e.g. "Get more traffic"}}</div>
+                </label>
+                <label class="goal-option">
+                    <input type="checkbox" name="goal" value="goal3">
+                    <div class="goal-icon">🤝</div>
+                    <div class="goal-label">{{GOAL_3 — e.g. "Build a team"}}</div>
+                </label>
+                <label class="goal-option">
+                    <input type="checkbox" name="goal" value="goal4">
+                    <div class="goal-icon">💡</div>
+                    <div class="goal-label">{{GOAL_4 — e.g. "Learn new skills"}}</div>
+                </label>
+            </div>
+
+            <div class="btn-row">
+                <button class="btn btn-primary" onclick="goToStep(2)">Continue →</button>
+            </div>
+        </div>
+
+        <!-- ─── Step 2: Feature Tour ─── -->
+        <div class="step-panel" id="step2">
+            <div class="step-header">
+                <div class="step-indicator">
+                    <span class="step-dot done"></span>
+                    <span class="step-dot active"></span>
+                    <span class="step-dot"></span>
+                    <span class="step-dot"></span>
+                </div>
+                <h1>Here's What You Get</h1>
+                <p>A quick tour of everything inside your membership.</p>
+            </div>
+
+            <div class="tour-card">
+                <div class="tour-icon">📚</div>
+                <div class="tour-body">
+                    <h3>{{TOUR_1_TITLE — e.g. "Content Library"}}</h3>
+                    <p>{{TOUR_1_DESC — e.g. "350+ lessons organized by topic. Start with the Quick-Start Path
+                        recommended for your level."}}</p>
+                </div>
+            </div>
+            <div class="tour-card">
+                <div class="tour-icon">🎥</div>
+                <div class="tour-body">
+                    <h3>{{TOUR_2_TITLE — e.g. "Live Training"}}</h3>
+                    <p>{{TOUR_2_DESC — e.g. "Weekly live sessions every Tuesday at 12pm ET. Ask questions in real
+                        time."}}</p>
+                </div>
+            </div>
+            <div class="tour-card">
+                <div class="tour-icon">💬</div>
+                <div class="tour-body">
+                    <h3>{{TOUR_3_TITLE — e.g. "Community"}}</h3>
+                    <p>{{TOUR_3_DESC — e.g. "Say hi in #introductions and find your accountability partner."}}</p>
+                </div>
+            </div>
+            <div class="tour-card">
+                <div class="tour-icon">🎯</div>
+                <div class="tour-body">
+                    <h3>{{TOUR_4_TITLE — e.g. "Action Plans"}}</h3>
+                    <p>{{TOUR_4_DESC — e.g. "Step-by-step roadmaps curated for your experience level and goals."}}</p>
+                </div>
+            </div>
+
+            <div class="btn-row">
+                <button class="btn btn-secondary" onclick="goToStep(1)">← Back</button>
+                <button class="btn btn-primary" onclick="goToStep(3)">Continue →</button>
+            </div>
+        </div>
+
+        <!-- ─── Step 3: Quick Wins ─── -->
+        <div class="step-panel" id="step3">
+            <div class="step-header">
+                <div class="step-indicator">
+                    <span class="step-dot done"></span>
+                    <span class="step-dot done"></span>
+                    <span class="step-dot active"></span>
+                    <span class="step-dot"></span>
+                </div>
+                <h1>Your First Quick Wins</h1>
+                <p>Complete these 3 actions to get immediate value.</p>
+            </div>
+
+            <ul class="checklist">
+                <li onclick="toggleCheck(this)" id="qw1">
+                    <span class="check-circle"></span>
+                    <span class="check-text">
+                        <a href="{{COMMUNITY_INTRO_URL}}" target="_blank">Introduce yourself in the community</a>
+                    </span>
+                </li>
+                <li onclick="toggleCheck(this)" id="qw2">
+                    <span class="check-circle"></span>
+                    <span class="check-text">
+                        <a href="{{QUICK_START_URL}}" target="_blank">{{QUICK_WIN_2 — e.g. "Watch the Quick-Start
+                            orientation (5 min)"}}</a>
+                    </span>
+                </li>
+                <li onclick="toggleCheck(this)" id="qw3">
+                    <span class="check-circle"></span>
+                    <span class="check-text">
+                        <a href="{{ACTION_PLAN_URL}}" target="_blank">{{QUICK_WIN_3 — e.g. "Pick your first action
+                            plan"}}</a>
+                    </span>
+                </li>
+            </ul>
+
+            <div class="btn-row">
+                <button class="btn btn-secondary" onclick="goToStep(2)">← Back</button>
+                <button class="btn btn-primary" onclick="goToStep(4)">Continue →</button>
+            </div>
+        </div>
+
+        <!-- ─── Step 4: Done! ─── -->
+        <div class="step-panel" id="step4">
+            <div class="step-header">
+                <div class="step-indicator">
+                    <span class="step-dot done"></span>
+                    <span class="step-dot done"></span>
+                    <span class="step-dot done"></span>
+                    <span class="step-dot active"></span>
+                </div>
+            </div>
+            <div class="finish-panel">
+                <div class="finish-emoji">🎉</div>
+                <h1>You're All Set!</h1>
+                <p>Your personalized dashboard is ready. Jump in and start making progress today.</p>
+                <a href="{{DASHBOARD_URL}}" class="btn btn-primary"
+                    style="display: inline-block; text-decoration: none;">
+                    Go to My Dashboard →
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const TOTAL_STEPS = 4;
+        let currentStep = 1;
+
+        function goToStep(n) {
+            document.getElementById('step' + currentStep).classList.remove('active');
+            document.getElementById('step' + n).classList.add('active');
+            currentStep = n;
+            document.getElementById('progressFill').style.width = (n / TOTAL_STEPS * 100) + '%';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /* Goal picker toggle */
+        document.querySelectorAll('.goal-option').forEach(opt => {
+            opt.addEventListener('click', () => {
+                const cb = opt.querySelector('input');
+                const selected = document.querySelectorAll('.goal-option.selected');
+                if (!opt.classList.contains('selected') && selected.length >= 3) return;
+                opt.classList.toggle('selected');
+                cb.checked = opt.classList.contains('selected');
+            });
+        });
+
+        /* Quick-win checklist */
+        function toggleCheck(li) {
+            li.classList.toggle('checked');
+            const circle = li.querySelector('.check-circle');
+            circle.textContent = li.classList.contains('checked') ? '✓' : '';
+            localStorage.setItem(li.id, li.classList.contains('checked') ? '1' : '');
+        }
+
+        /* Restore quick-win state */
+        ['qw1', 'qw2', 'qw3'].forEach(id => {
+            if (localStorage.getItem(id) === '1') {
+                const li = document.getElementById(id);
+                li.classList.add('checked');
+                li.querySelector('.check-circle').textContent = '✓';
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Strategy Call — {{BRAND}}</title>
+    <meta name="description"
+        content="{{META_DESCRIPTION — e.g. 'Schedule a free strategy session to see if {{PROGRAM_NAME}} is right for you.'}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #09090b;
+            --surface: #18181b;
+            --card: #1c1c22;
+            --text: #fafafa;
+            --muted: #a1a1aa;
+            --accent: #a78bfa;
+            --accent-hover: #8b5cf6;
+            --accent-glow: rgba(167, 139, 250, 0.2);
+            --gold: #fbbf24;
+            --success: #22c55e;
+            --border: rgba(255, 255, 255, 0.06);
+            --radius: 16px;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Layout ── */
+        .booking-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            gap: 40px;
+        }
+
+        @media (min-width: 900px) {
+            .booking-layout {
+                grid-template-columns: 1fr 1fr;
+                padding: 60px 32px;
+                gap: 56px;
+            }
+        }
+
+        /* ── Left Column — Value ── */
+        .value-col {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .value-col h1 {
+            font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+        }
+
+        .value-col h1 em {
+            font-style: normal;
+            color: var(--accent);
+        }
+
+        .value-col .subtitle {
+            color: var(--muted);
+            font-size: 1.0625rem;
+        }
+
+        /* Call details */
+        .call-details {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .detail-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .detail-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(167, 139, 250, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .detail-text {
+            font-size: 0.9375rem;
+            color: var(--muted);
+        }
+
+        .detail-text strong {
+            color: var(--text);
+        }
+
+        /* What we'll cover */
+        .agenda {
+            background: var(--card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            padding: 24px;
+        }
+
+        .agenda h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .agenda ul {
+            list-style: none;
+        }
+
+        .agenda ul li {
+            padding: 8px 0;
+            font-size: 0.9375rem;
+            color: var(--muted);
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .agenda ul li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* Social proof strip */
+        .proof-strip {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .proof-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8125rem;
+            color: var(--muted);
+        }
+
+        .proof-item .num {
+            color: var(--gold);
+            font-weight: 800;
+            font-size: 1rem;
+        }
+
+        /* ── Right Column — Embed / Form ── */
+        .calendar-col {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .calendar-embed {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            min-height: 520px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .calendar-embed iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 520px;
+            border: none;
+        }
+
+        .calendar-placeholder {
+            color: var(--muted);
+            font-size: 0.9375rem;
+            text-align: center;
+            padding: 32px;
+        }
+
+        .calendar-placeholder code {
+            display: block;
+            margin-top: 12px;
+            padding: 12px;
+            background: var(--surface);
+            border-radius: 8px;
+            font-size: 0.8125rem;
+            word-break: break-all;
+        }
+
+        /* Trust badges below calendar */
+        .trust-badges {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8125rem;
+            color: var(--muted);
+        }
+
+        /* ── Testimonial ── */
+        .testimonial-strip {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+
+        .testimonial-strip .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .testimonial-strip blockquote {
+            font-style: italic;
+            font-size: 1rem;
+            color: var(--muted);
+            margin-bottom: 12px;
+        }
+
+        .testimonial-strip cite {
+            font-style: normal;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .testimonial-strip .result {
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 0.875rem;
+            margin-top: 4px;
+        }
+
+        /* ── Footer ── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 24px 20px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.8125rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="booking-layout">
+        <!-- Left: Value Proposition -->
+        <div class="value-col">
+            <div>
+                <h1>Book Your Free <em>Strategy Call</em></h1>
+                <p class="subtitle">
+                    {{BOOKING_SUBTITLE — e.g. "In 30 minutes, we'll map out a custom plan
+                    to help you hit your next revenue milestone — even if we never work together."}}
+                </p>
+            </div>
+
+            <div class="call-details">
+                <div class="detail-row">
+                    <div class="detail-icon">⏱</div>
+                    <div class="detail-text"><strong>{{CALL_DURATION — e.g. "30 minutes"}}</strong> · 1-on-1 with
+                        {{CALL_HOST — e.g. "our strategist"}}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-icon">📍</div>
+                    <div class="detail-text"><strong>{{CALL_METHOD — e.g. "Zoom video call"}}</strong> · Link sent after
+                        booking</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-icon">💰</div>
+                    <div class="detail-text"><strong>Free</strong> · No obligation, no pressure</div>
+                </div>
+            </div>
+
+            <div class="agenda">
+                <h3>What We'll Cover on the Call</h3>
+                <ul>
+                    <li>{{AGENDA_1 — e.g. "Audit your current strategy and identify bottlenecks"}}</li>
+                    <li>{{AGENDA_2 — e.g. "Map out a 90-day growth plan tailored to you"}}</li>
+                    <li>{{AGENDA_3 — e.g. "See if {{PROGRAM_NAME}} is a fit (no pressure)"}}</li>
+                    <li>{{AGENDA_4 — e.g. "Leave with 2–3 actionable takeaways you can use immediately"}}</li>
+                </ul>
+            </div>
+
+            <div class="proof-strip">
+                <div class="proof-item">
+                    <span class="num">{{CALLS_BOOKED — e.g. "1,200+"}}</span> calls booked
+                </div>
+                <div class="proof-item">
+                    <span class="num">{{AVG_RATING — e.g. "4.9/5"}}</span> avg rating
+                </div>
+                <div class="proof-item">
+                    <span class="num">{{SHOW_RATE — e.g. "93%"}}</span> show rate
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Calendar Embed -->
+        <div class="calendar-col">
+            <div class="calendar-embed">
+                <!--
+                    Replace the placeholder below with your scheduling tool embed.
+                    Supported: Calendly, SavvyCal, Cal.com, TidyCal, etc.
+                -->
+                <div class="calendar-placeholder">
+                    <p>📅 Calendar embed goes here</p>
+                    <code>{{CALENDAR_EMBED_URL — e.g. "https://calendly.com/your-team/strategy-call"}}</code>
+                    <p style="margin-top: 12px; font-size: 0.8125rem;">
+                        Replace this div with:<br>
+                        &lt;iframe src="{{CALENDAR_EMBED_URL}}" …&gt;
+                    </p>
+                </div>
+            </div>
+
+            <div class="trust-badges">
+                <span class="trust-badge">🔒 100% Confidential</span>
+                <span class="trust-badge">📵 No Spam Calls</span>
+                <span class="trust-badge">✅ Cancel Anytime</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonial Strip -->
+    <div class="testimonial-strip">
+        <div class="card">
+            <blockquote>"{{BOOKING_TESTIMONIAL — e.g. "I almost didn't book, but the strategy call alone was worth $5K
+                in insights. Ended up joining and 3x'd my revenue in 6 months."}}"</blockquote>
+            <cite>— {{BOOKING_TESTIMONIAL_AUTHOR}}</cite>
+            <div class="result">{{BOOKING_TESTIMONIAL_RESULT — e.g. "Went from $8K/mo to $27K/mo"}}</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; {{YEAR}} {{BRAND}}. All rights reserved. | <a href="{{PRIVACY_URL}}"
+                style="color: var(--muted);">Privacy Policy</a></p>
+    </footer>
+
+</body>
+
+</html>

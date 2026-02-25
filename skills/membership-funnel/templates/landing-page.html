@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{MEMBERSHIP_NAME}} — Join the Community</title>
+    <meta name="description"
+        content="{{META_DESCRIPTION — e.g. 'Join 2,000+ members getting exclusive content, live training, and community support.'}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --bg: #09090b;
+            --surface: #18181b;
+            --card: #27272a;
+            --text: #fafafa;
+            --muted: #a1a1aa;
+            --accent: #6366f1;
+            --accent-hover: #4f46e5;
+            --accent-glow: rgba(99, 102, 241, 0.25);
+            --success: #22c55e;
+            --border: rgba(255, 255, 255, 0.08);
+            --radius: 16px;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1120px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ── Nav ── */
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            font-size: 0.875rem;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .nav-cta {
+            padding: 8px 20px;
+            background: var(--accent);
+            color: white !important;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .nav-cta:hover {
+            background: var(--accent-hover);
+        }
+
+        /* ── Hero ── */
+        .hero {
+            text-align: center;
+            padding: 80px 20px 48px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 100px;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.25rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            letter-spacing: -0.03em;
+        }
+
+        .hero .subtitle {
+            font-size: 1.125rem;
+            color: var(--muted);
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-primary {
+            padding: 14px 28px;
+            background: var(--accent);
+            color: white;
+            font-size: 1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            min-height: 48px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 14px var(--accent-glow);
+        }
+
+        .cta-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px var(--accent-glow);
+        }
+
+        .hero-note {
+            margin-top: 12px;
+            font-size: 0.8125rem;
+            color: var(--muted);
+        }
+
+        /* ── Preview ── */
+        .preview {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 20px 80px;
+        }
+
+        .preview .frame {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            min-height: 360px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            font-size: 0.9375rem;
+        }
+
+        /* ── Social Proof ── */
+        .social-proof {
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 32px 20px;
+            text-align: center;
+        }
+
+        .social-proof p {
+            font-size: 0.8125rem;
+            color: var(--muted);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .member-stats {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat .number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .stat .label {
+            font-size: 0.8125rem;
+            color: var(--muted);
+        }
+
+        /* ── What's Inside ── */
+        .features {
+            padding: 80px 20px;
+        }
+
+        .features .section-label {
+            text-align: center;
+            font-size: 0.8125rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 12px;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 48px;
+            letter-spacing: -0.02em;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        @media (min-width: 768px) {
+            .features-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .feature-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .feature-card:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            margin-bottom: 16px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.0625rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            font-size: 0.9375rem;
+            color: var(--muted);
+        }
+
+        /* ── Testimonials ── */
+        .testimonials {
+            padding: 80px 20px;
+            background: var(--surface);
+        }
+
+        .testimonials h2 {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 48px;
+            letter-spacing: -0.02em;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .testimonial-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .testimonial-card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid var(--border);
+        }
+
+        .testimonial-card .stars {
+            color: #fbbf24;
+            font-size: 0.875rem;
+            margin-bottom: 12px;
+        }
+
+        .testimonial-card blockquote {
+            font-size: 0.9375rem;
+            color: var(--muted);
+            font-style: italic;
+            margin-bottom: 16px;
+        }
+
+        .testimonial-card cite {
+            font-style: normal;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .testimonial-card .member-since {
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        /* ── Pricing ── */
+        .pricing {
+            padding: 80px 20px;
+        }
+
+        .pricing h2 {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .pricing .subtitle {
+            text-align: center;
+            color: var(--muted);
+            margin-bottom: 48px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .pricing-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .price-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px 24px;
+            position: relative;
+        }
+
+        .price-card.featured {
+            border-color: var(--accent);
+            box-shadow: 0 0 40px var(--accent-glow);
+        }
+
+        .price-card.featured::before {
+            content: 'Best Value';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .plan-name {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .plan-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .plan-price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--muted);
+        }
+
+        .plan-desc {
+            color: var(--muted);
+            font-size: 0.875rem;
+            margin-bottom: 24px;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        .plan-features li {
+            padding: 6px 0;
+            font-size: 0.9375rem;
+            color: var(--muted);
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .plan-features li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        .plan-cta {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            min-height: 44px;
+        }
+
+        .plan-cta-primary {
+            background: var(--accent);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .plan-cta-primary:hover {
+            background: var(--accent-hover);
+        }
+
+        .plan-cta-secondary {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .plan-cta-secondary:hover {
+            border-color: var(--muted);
+        }
+
+        .pricing-note {
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.8125rem;
+            margin-top: 24px;
+        }
+
+        /* ── FAQ ── */
+        .faq {
+            padding: 80px 20px;
+            background: var(--surface);
+        }
+
+        .faq h2 {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 48px;
+        }
+
+        .faq-list {
+            list-style: none;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+            padding: 20px 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-q {
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .faq-a {
+            color: var(--muted);
+            font-size: 0.9375rem;
+        }
+
+        /* ── Final CTA ── */
+        .final-cta {
+            padding: 80px 20px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--bg) 0%, var(--surface) 100%);
+        }
+
+        .final-cta h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .final-cta p {
+            color: var(--muted);
+            max-width: 500px;
+            margin: 0 auto 32px;
+        }
+
+        .final-cta .guarantee {
+            margin-top: 12px;
+            font-size: 0.8125rem;
+            color: var(--muted);
+        }
+
+        /* ── Footer ── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 32px 20px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.8125rem;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">{{MEMBERSHIP_NAME}}</div>
+        <div class="nav-links">
+            <a href="#features">What's Inside</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#faq">FAQ</a>
+            <a href="#pricing" class="nav-cta">Join Now</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-badge">{{BADGE — e.g. "7-Day Free Trial · Cancel Anytime"}}</div>
+        <h1>{{HEADLINE — e.g. "The Community That Helps You Grow Faster"}}</h1>
+        <p class="subtitle">
+            {{SUBHEADLINE — e.g. "Exclusive content, live trainings, and a private community
+            of 2,000+ marketers — all for the price of a coffee."}}
+        </p>
+        <div class="hero-ctas">
+            <a href="#pricing" class="cta-primary">Start Your Free Trial →</a>
+        </div>
+        <p class="hero-note">{{TRIAL_NOTE — e.g. "Free 7-day trial · No credit card required"}}</p>
+    </section>
+
+    <div class="preview">
+        <div class="frame">
+            <!-- Replace with actual screenshot of member area -->
+            {{PREVIEW_IMAGE — screenshot of member dashboard or community}}
+        </div>
+    </div>
+
+    <section class="social-proof">
+        <div class="container">
+            <p>Trusted by members worldwide</p>
+            <div class="member-stats">
+                <div class="stat">
+                    <div class="number">{{MEMBER_COUNT — e.g. "2,400+"}}</div>
+                    <div class="label">Active Members</div>
+                </div>
+                <div class="stat">
+                    <div class="number">{{CONTENT_COUNT — e.g. "350+"}}</div>
+                    <div class="label">Lessons & Resources</div>
+                </div>
+                <div class="stat">
+                    <div class="number">{{AVG_RATING — e.g. "4.9"}}</div>
+                    <div class="label">Avg Member Rating</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <p class="section-label">What's Inside</p>
+            <h2>Everything You Need to {{OUTCOME}}</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>{{FEATURE_1_TITLE — e.g. "Content Library"}}</h3>
+                    <p>{{FEATURE_1_DESC — e.g. "350+ lessons, frameworks, and templates updated weekly."}}</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎥</div>
+                    <h3>{{FEATURE_2_TITLE — e.g. "Live Training"}}</h3>
+                    <p>{{FEATURE_2_DESC — e.g. "Weekly live sessions with Q&A — all recorded for replay."}}</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3>{{FEATURE_3_TITLE — e.g. "Private Community"}}</h3>
+                    <p>{{FEATURE_3_DESC — e.g. "Connect with peers, get feedback, and stay accountable."}}</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>{{FEATURE_4_TITLE — e.g. "Action Plans"}}</h3>
+                    <p>{{FEATURE_4_DESC — e.g. "Step-by-step roadmaps so you always know what to do next."}}</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>{{FEATURE_5_TITLE — e.g. "Progress Tracking"}}</h3>
+                    <p>{{FEATURE_5_DESC — e.g. "Visual milestones and achievements to keep you motivated."}}</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔑</div>
+                    <h3>{{FEATURE_6_TITLE — e.g. "Expert Access"}}</h3>
+                    <p>{{FEATURE_6_DESC — e.g. "Monthly AMAs with industry experts and guest speakers."}}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <h2>What Members Say</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <blockquote>"{{TESTIMONIAL_1}}"</blockquote>
+                <cite>{{MEMBER_1_NAME}}</cite>
+                <div class="member-since">Member for {{MEMBER_1_DURATION — e.g. "8 months"}}</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <blockquote>"{{TESTIMONIAL_2}}"</blockquote>
+                <cite>{{MEMBER_2_NAME}}</cite>
+                <div class="member-since">Member for {{MEMBER_2_DURATION}}</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <blockquote>"{{TESTIMONIAL_3}}"</blockquote>
+                <cite>{{MEMBER_3_NAME}}</cite>
+                <div class="member-since">Member for {{MEMBER_3_DURATION}}</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2>Simple, Transparent Pricing</h2>
+            <p class="subtitle">Start free, upgrade when you're ready. Cancel anytime.</p>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <div class="plan-name">Monthly</div>
+                    <div class="plan-price">{{MONTHLY_PRICE — e.g. "$29"}}<span>/mo</span></div>
+                    <p class="plan-desc">Flexible month-to-month access</p>
+                    <ul class="plan-features">
+                        <li>Full content library</li>
+                        <li>Live weekly trainings</li>
+                        <li>Private community access</li>
+                        <li>Progress tracking</li>
+                    </ul>
+                    <a href="{{MONTHLY_SIGNUP_URL}}" class="plan-cta plan-cta-secondary">Start Free Trial</a>
+                </div>
+                <div class="price-card featured">
+                    <div class="plan-name">Annual</div>
+                    <div class="plan-price">{{ANNUAL_PRICE — e.g. "$19"}}<span>/mo</span></div>
+                    <p class="plan-desc">{{ANNUAL_SAVINGS — e.g. "Save $120/year (2 months free)"}}</p>
+                    <ul class="plan-features">
+                        <li>Everything in Monthly</li>
+                        <li>{{ANNUAL_BONUS_1 — e.g. "Bonus masterclass vault"}}</li>
+                        <li>{{ANNUAL_BONUS_2 — e.g. "Priority expert access"}}</li>
+                        <li>{{ANNUAL_BONUS_3 — e.g. "Exclusive annual member badge"}}</li>
+                    </ul>
+                    <button class="plan-cta plan-cta-primary" onclick="window.location='{{ANNUAL_SIGNUP_URL}}'">Start
+                        Free Trial</button>
+                </div>
+            </div>
+            <p class="pricing-note">{{PRICING_NOTE — e.g. "All plans include a 7-day free trial. Cancel anytime with one
+                click."}}</p>
+        </div>
+    </section>
+
+    <section class="faq" id="faq">
+        <h2>Frequently Asked Questions</h2>
+        <ul class="faq-list">
+            <li class="faq-item">
+                <div class="faq-q">{{FAQ_Q1 — e.g. "Can I cancel anytime?"}}</div>
+                <div class="faq-a">{{FAQ_A1 — e.g. "Absolutely. Cancel with one click from your account settings. No
+                    questions asked."}}</div>
+            </li>
+            <li class="faq-item">
+                <div class="faq-q">{{FAQ_Q2 — e.g. "What if I'm a complete beginner?"}}</div>
+                <div class="faq-a">{{FAQ_A2}}</div>
+            </li>
+            <li class="faq-item">
+                <div class="faq-q">{{FAQ_Q3 — e.g. "How much time do I need?"}}</div>
+                <div class="faq-a">{{FAQ_A3}}</div>
+            </li>
+            <li class="faq-item">
+                <div class="faq-q">{{FAQ_Q4 — e.g. "Is there a refund policy?"}}</div>
+                <div class="faq-a">{{FAQ_A4}}</div>
+            </li>
+        </ul>
+    </section>
+
+    <section class="final-cta">
+        <h2>Ready to {{FINAL_CTA_HEADLINE — e.g. "Join the Community"}}?</h2>
+        <p>{{FINAL_CTA_BODY — e.g. "Start your free trial today and see why 2,400+ members call this the best investment
+            they've made."}}</p>
+        <a href="#pricing" class="cta-primary">Start Your Free Trial →</a>
+        <p class="guarantee">🔒 {{GUARANTEE — e.g. "7-day free trial · Cancel anytime · 100% satisfaction guarantee"}}
+        </p>
+    </section>
+
+    <footer>
+        <p>&copy; {{YEAR}} {{MEMBERSHIP_NAME}}. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{HEADLINE}} — {{BRAND}}</title>
+    <meta name="description" content="{{META_DESCRIPTION}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #09090b;
+            --surface: #18181b;
+            --card: #1c1c22;
+            --text: #fafafa;
+            --muted: #a1a1aa;
+            --accent: #a78bfa;
+            --accent-hover: #8b5cf6;
+            --accent-glow: rgba(167, 139, 250, 0.2);
+            --gold: #fbbf24;
+            --border: rgba(255, 255, 255, 0.06);
+            --radius: 16px;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            text-align: center;
+            padding: 5rem 1.5rem 3rem;
+        }
+
+        .hero .badge {
+            display: inline-block;
+            padding: 6px 18px;
+            background: rgba(251, 191, 36, 0.1);
+            border: 1px solid rgba(251, 191, 36, 0.25);
+            border-radius: 80px;
+            color: var(--gold);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.25rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero h1 em {
+            font-style: normal;
+            color: var(--accent);
+        }
+
+        .hero .subtext {
+            color: var(--muted);
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 16px 40px;
+            background: var(--accent);
+            color: white;
+            font-size: 1.0625rem;
+            font-weight: 700;
+            font-family: inherit;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+            box-shadow: 0 4px 14px var(--accent-glow);
+        }
+
+        .hero-cta:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--accent-glow);
+        }
+
+        /* ── Divider ── */
+        .divider {
+            border: 0;
+            height: 1px;
+            background: var(--border);
+            margin: 4rem auto;
+            max-width: 800px;
+        }
+
+        /* ── Sections ── */
+        .section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1.5rem 4rem;
+        }
+
+        .section h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1.25rem;
+        }
+
+        .section p,
+        .section li {
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
+        .section p+p {
+            margin-top: 1rem;
+        }
+
+        /* ── Story / Problem / Solution ── */
+        .story-block {
+            padding: 0 1.5rem 3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .story-block h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .story-block p {
+            color: var(--muted);
+            font-size: 1.0625rem;
+        }
+
+        .story-block p+p {
+            margin-top: 1rem;
+        }
+
+        /* ── Case Studies ── */
+        .case-studies {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .case-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            border-left: 3px solid var(--gold);
+            padding: 1.75rem;
+        }
+
+        .case-card .result {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--gold);
+            margin-bottom: 0.25rem;
+        }
+
+        .case-card .situation {
+            color: var(--muted);
+            font-size: 0.9375rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .case-card blockquote {
+            font-style: italic;
+            color: var(--text);
+            font-size: 0.9375rem;
+            margin-bottom: 0.75rem;
+            padding-left: 1rem;
+            border-left: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .case-card cite {
+            display: block;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: var(--muted);
+        }
+
+        /* ── What's Included ── */
+        .included-list {
+            list-style: none;
+        }
+
+        .included-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .included-list li:last-child {
+            border-bottom: none;
+        }
+
+        .included-list .check {
+            color: var(--accent);
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* ── Who This Is For / Not For ── */
+        .qualifier-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        @media (min-width: 768px) {
+            .qualifier-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .qualifier-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 1.75rem;
+            border: 1px solid var(--border);
+        }
+
+        .qualifier-card h3 {
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+        }
+
+        .qualifier-card ul {
+            list-style: none;
+        }
+
+        .qualifier-card ul li {
+            padding: 6px 0;
+            padding-left: 1.75rem;
+            position: relative;
+        }
+
+        .qualifier-card.for-you ul li::before {
+            content: '✅';
+            position: absolute;
+            left: 0;
+        }
+
+        .qualifier-card.not-for-you ul li::before {
+            content: '❌';
+            position: absolute;
+            left: 0;
+        }
+
+        /* ── Credentials ── */
+        .credentials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 1rem;
+        }
+
+        .credential {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--card);
+            border-radius: 80px;
+            font-size: 0.875rem;
+            color: var(--muted);
+            border: 1px solid var(--border);
+        }
+
+        /* ── Trust / Media ── */
+        .trust-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            justify-content: center;
+            opacity: 0.4;
+            padding: 2rem 0;
+        }
+
+        .trust-bar span {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        /* ── FAQ ── */
+        .faq-list {
+            list-style: none;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+            padding: 20px 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-q {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+
+        .faq-a {
+            font-size: 0.9375rem;
+            color: var(--muted);
+        }
+
+        /* ── Final CTA ── */
+        .final-cta {
+            text-align: center;
+            padding: 5rem 1.5rem;
+            background: linear-gradient(180deg, var(--bg) 0%, var(--surface) 100%);
+        }
+
+        .final-cta h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .final-cta p {
+            color: var(--muted);
+            max-width: 500px;
+            margin: 0 auto 2rem;
+        }
+
+        .guarantee {
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            color: var(--muted);
+        }
+
+        /* ── Footer ── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.8125rem;
+        }
+
+        @media (max-width: 640px) {
+            .hero {
+                padding: 3rem 1rem 2rem;
+            }
+
+            .section,
+            .story-block {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="badge">{{BADGE — e.g. "By Application Only"}}</div>
+        <h1>{{HEADLINE_PART_1}} <em>{{HEADLINE_HIGHLIGHT}}</em></h1>
+        <p class="subtext">{{SUBHEADLINE — e.g. "The proven system helping coaches and
+            consultants add $50K+ per month without ads, funnels, or a big team."}}</p>
+        <a href="#apply" class="hero-cta">Book Your Call →</a>
+    </section>
+
+    <!-- Trusted By -->
+    <div class="trust-bar">
+        <span>{{MEDIA_1 — e.g. "Forbes"}}</span>
+        <span>{{MEDIA_2 — e.g. "Inc."}}</span>
+        <span>{{MEDIA_3 — e.g. "Entrepreneur"}}</span>
+        <span>{{MEDIA_4 — e.g. "Business Insider"}}</span>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Opening Story -->
+    <div class="story-block">
+        <h2>{{STORY_HEADLINE — e.g. "I was exactly where you are right now"}}</h2>
+        <p>{{STORY_PARAGRAPH_1 — 2–3 sentences empathizing with the reader's situation}}</p>
+        <p>{{STORY_PARAGRAPH_2 — the turning point / what changed}}</p>
+    </div>
+
+    <!-- The Problem -->
+    <div class="story-block">
+        <h2>{{PROBLEM_HEADLINE — e.g. "Here's what's really holding you back"}}</h2>
+        <p>{{PROBLEM_PARAGRAPH — articulate their pain better than they can, describe the cost of inaction}}</p>
+    </div>
+
+    <!-- The Solution -->
+    <div class="story-block">
+        <h2>{{SOLUTION_HEADLINE — e.g. "A different approach"}}</h2>
+        <p>{{SOLUTION_PARAGRAPH — introduce your methodology, NOT the product yet}}</p>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Case Studies -->
+    <div class="section">
+        <h2>Real Results From Real Clients</h2>
+        <div class="case-studies">
+            <div class="case-card">
+                <div class="result">{{RESULT_1 — e.g. "$127K in 90 days"}}</div>
+                <div class="situation">{{SITUATION_1 — where they were before}}</div>
+                <blockquote>"{{QUOTE_1 — in their own words}}"</blockquote>
+                <cite>— {{CLIENT_1_NAME}}, {{CLIENT_1_TITLE}}</cite>
+            </div>
+            <div class="case-card">
+                <div class="result">{{RESULT_2}}</div>
+                <div class="situation">{{SITUATION_2}}</div>
+                <blockquote>"{{QUOTE_2}}"</blockquote>
+                <cite>— {{CLIENT_2_NAME}}, {{CLIENT_2_TITLE}}</cite>
+            </div>
+            <div class="case-card">
+                <div class="result">{{RESULT_3}}</div>
+                <div class="situation">{{SITUATION_3}}</div>
+                <blockquote>"{{QUOTE_3}}"</blockquote>
+                <cite>— {{CLIENT_3_NAME}}, {{CLIENT_3_TITLE}}</cite>
+            </div>
+        </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- What's Included -->
+    <div class="section">
+        <h2>What's Included</h2>
+        <ul class="included-list">
+            <li><span class="check">✓</span> <span>{{INCLUDED_1 — e.g. "12-week 1-on-1 coaching program"}}</span></li>
+            <li><span class="check">✓</span> <span>{{INCLUDED_2 — e.g. "Custom strategy session every week"}}</span>
+            </li>
+            <li><span class="check">✓</span> <span>{{INCLUDED_3 — e.g. "Private community of high-performers"}}</span>
+            </li>
+            <li><span class="check">✓</span> <span>{{INCLUDED_4 — e.g. "Done-for-you templates and scripts"}}</span>
+            </li>
+            <li><span class="check">✓</span> <span>{{INCLUDED_5 — e.g. "Lifetime access to course materials"}}</span>
+            </li>
+            <li><span class="check">✓</span> <span>{{INCLUDED_6 — e.g. "Quarterly in-person mastermind"}}</span></li>
+        </ul>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Who This Is For / Not For -->
+    <div class="section">
+        <h2>Is This Right For You?</h2>
+        <div class="qualifier-grid">
+            <div class="qualifier-card for-you">
+                <h3>This is for you if…</h3>
+                <ul>
+                    <li>{{FOR_YOU_1 — e.g. "You're already making $10K+/mo and want to scale"}}</li>
+                    <li>{{FOR_YOU_2}}</li>
+                    <li>{{FOR_YOU_3}}</li>
+                    <li>{{FOR_YOU_4}}</li>
+                </ul>
+            </div>
+            <div class="qualifier-card not-for-you">
+                <h3>This is NOT for you if…</h3>
+                <ul>
+                    <li>{{NOT_1 — e.g. "You're looking for a get-rich-quick scheme"}}</li>
+                    <li>{{NOT_2}}</li>
+                    <li>{{NOT_3}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- About / Credentials -->
+    <div class="section">
+        <h2>About {{FOUNDER_NAME}}</h2>
+        <p>{{BIO_PARAGRAPH_1 — who you are, your background}}</p>
+        <p>{{BIO_PARAGRAPH_2 — specific results, credentials}}</p>
+        <div class="credentials">
+            <span class="credential">🎓 {{CREDENTIAL_1}}</span>
+            <span class="credential">📊 {{CREDENTIAL_2 — e.g. "3,200+ clients served"}}</span>
+            <span class="credential">⭐ {{CREDENTIAL_3 — e.g. "12 years in industry"}}</span>
+        </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- FAQ -->
+    <div class="section">
+        <h2>Frequently Asked Questions</h2>
+        <ul class="faq-list">
+            <li class="faq-item">
+                <div class="faq-q">{{FAQ_Q1 — e.g. "How much does the program cost?"}}</div>
+                <div class="faq-a">{{FAQ_A1 — e.g. "Investment details are shared on the call after we confirm it's a
+                    fit."}}</div>
+            </li>
+            <li class="faq-item">
+                <div class="faq-q">{{FAQ_Q2}}</div>
+                <div class="faq-a">{{FAQ_A2}}</div>
+            </li>
+            <li class="faq-item">
+                <div class="faq-q">{{FAQ_Q3}}</div>
+                <div class="faq-a">{{FAQ_A3}}</div>
+            </li>
+            <li class="faq-item">
+                <div class="faq-q">{{FAQ_Q4 — e.g. "What if it doesn't work for me?"}}</div>
+                <div class="faq-a">{{FAQ_A4 — e.g. "We offer a results guarantee. If you implement and don't see ROI in
+                    90 days, we'll work with you for free until you do."}}</div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Final CTA -->
+    <section class="final-cta" id="apply">
+        <h2>Ready to {{TRANSFORMATION — e.g. "Scale to $50K+ Months"}}?</h2>
+        <p>{{FINAL_CTA_BODY — e.g. "Book a free strategy call. We'll map out a custom plan for your business — even if
+            we don't work together."}}</p>
+        <a href="{{BOOKING_URL}}" class="hero-cta">Book Your Free Call →</a>
+        <p class="guarantee">{{GUARANTEE — e.g. "🔒 No obligation · 100% confidential · Results guarantee"}}</p>
+    </section>
+
+    <footer>
+        <p>&copy; {{YEAR}} {{BRAND}}. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>
