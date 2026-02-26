@@ -1,12 +1,12 @@
 {
-    "name": "funnel-architect-plugins",
+    "name": "agashic-funnel-architect-marketplace",
     "owner": {
-        "name": "Funnel Architect",
+        "name": "Agashic AI",
         "url": "https://github.com/ominou5"
     },
     "plugins": [
         {
-            "name": "sales-funnel",
+            "name": "agashic-funnel-architect",
             "source": "./",
             "description": "Full-stack sales funnel architect — build high-converting funnels with optimized UI/UX, page speed, mobile responsiveness, and deploy anywhere."
         }

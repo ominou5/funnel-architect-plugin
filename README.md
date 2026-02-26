@@ -118,7 +118,7 @@ funnel-architect-plugin/
 
 The plugin runs checks automatically as you build:
 
-- **Mobile Check** (PostToolUse) — validates viewport, touch targets, and fixed widths after every file write
+- **Mobile Check** (PostToolUse) — validates viewport, touch targets, and fixed widths after every file write ⚠️ *Currently bash-only; Node.js rewrite in progress for Windows/cross-platform support*
 - **Lighthouse Audit** (PostToolUse, async) — runs performance analysis in the background
 - **Funnel Validation** (Stop) — checks link integrity and structure before completing a session
 

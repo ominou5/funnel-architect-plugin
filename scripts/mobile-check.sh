@@ -1,6 +1,7 @@
 #!/bin/bash
 # mobile-check.sh — Validates mobile responsiveness of HTML files
 # Receives hook JSON input on stdin, checks the edited file for mobile patterns
+# ⚠️ WIP: This script requires bash (macOS/Linux/WSL). Node.js rewrite planned for cross-platform support.
 
 INPUT=$(cat)
 FILE_PATH=$(echo "$INPUT" | jq -r '.tool_input.file_path // .tool_input.TargetFile // empty')
