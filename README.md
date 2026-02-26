@@ -18,16 +18,19 @@ Tell Claude what you're selling and who you're selling to. Funnel Architect hand
 ## Quick Start
 
 ```bash
-# Clone the plugin
+# 1. Clone the plugin
 git clone https://github.com/ominou5/funnel-architect-plugin.git
 
-# Add to your Claude Code plugins directory
-# (see Claude Code docs for plugin installation)
+# 2. Launch Claude Code with the plugin loaded
+claude --plugin-dir ./funnel-architect-plugin
 
-# Start Claude Code in your project
-claude
+# 3. Verify it loaded — skills and agents should appear
+/help                              # lists available skills
+/agents                            # lists available agents
 
-# Then ask:
+# 4. Try it out
+/agashic-funnel-architect:funnel-select    # pick the right funnel type
+# or just ask in plain English:
 # "Build me an opt-in funnel for a free marketing checklist"
 ```
 
