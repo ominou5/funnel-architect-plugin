@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A comprehensive Claude Code plugin for building high-converting sales funnels. Strategy, design, copy, deployment, and optimization — all inside your editor.
+A comprehensive Claude Code plugin for building high-converting sales funnels. Strategy, design, copy, deployment, and optimization — all inside your editor. v 1.0.0 - Warning: There are bound to be issues as it's just been released! Please follow our contributing, security rules, and get me here if you need help or want to discuss: https://www.skool.com/agashic-5136
 
 ## What It Does
 
