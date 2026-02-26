@@ -15,6 +15,18 @@ Tell Claude what you're selling and who you're selling to. Funnel Architect hand
 - **Deploys anywhere** (Vercel, Netlify, Cloudflare Pages)
 - **Connects your stack** (email, payments, CRM, analytics)
 
+## Why Funnel Architect?
+
+| Without this plugin | With Funnel Architect |
+|---|---|
+| Research funnel types manually | Claude picks the optimal funnel for your offer |
+| Wire up pages, forms, and CTAs from scratch | 16 production-ready templates across 12 funnel types |
+| Hire a copywriter or wing it | 5 specialist agents write, review, and optimize copy |
+| Hope your pages load fast | Automated Lighthouse audits and mobile checks on every save |
+| Deploy manually | One command to Vercel, Netlify, or Cloudflare |
+
+**Who it's for**: Creators, SaaS founders, coaches, and marketers who want to ship funnels fast without leaving their editor.
+
 ## Quick Start
 
 ```bash

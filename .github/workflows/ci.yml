@@ -1,0 +1,72 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    name: Validate Plugin Structure
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate plugin.json
+        run: node -e "JSON.parse(require('fs').readFileSync('.claude-plugin/plugin.json','utf8')); console.log('✅ plugin.json is valid JSON')"
+
+      - name: Validate marketplace.json
+        run: node -e "JSON.parse(require('fs').readFileSync('marketplace.json','utf8')); console.log('✅ marketplace.json is valid JSON')"
+
+      - name: Validate hooks.json
+        run: node -e "JSON.parse(require('fs').readFileSync('hooks/hooks.json','utf8')); console.log('✅ hooks.json is valid JSON')"
+
+      - name: Validate .mcp.json
+        run: node -e "JSON.parse(require('fs').readFileSync('.mcp.json','utf8')); console.log('✅ .mcp.json is valid JSON')"
+
+      - name: Check SKILL.md frontmatter
+        run: |
+          echo "Checking all SKILL.md files have valid frontmatter..."
+          MISSING=0
+          for skill in skills/*/SKILL.md; do
+            if ! head -1 "$skill" | grep -q "^---"; then
+              echo "❌ $skill missing YAML frontmatter"
+              MISSING=$((MISSING + 1))
+            fi
+          done
+          if [ $MISSING -eq 0 ]; then
+            echo "✅ All $(ls skills/*/SKILL.md | wc -l) SKILL.md files have frontmatter"
+          else
+            exit 1
+          fi
+
+      - name: Check agent files exist
+        run: |
+          EXPECTED="funnel-builder conversion-optimizer page-speed-optimizer copy-doctor deploy-assistant"
+          MISSING=0
+          for agent in $EXPECTED; do
+            if [ ! -f "agents/$agent.md" ]; then
+              echo "❌ Missing agent: agents/$agent.md"
+              MISSING=$((MISSING + 1))
+            fi
+          done
+          if [ $MISSING -eq 0 ]; then
+            echo "✅ All 5 agent files present"
+          else
+            exit 1
+          fi
+
+      - name: Validate funnel link integrity
+        run: node scripts/validate-funnel-structure.js .
+
+      - name: Count templates
+        run: |
+          COUNT=$(find skills -name "*.html" | wc -l)
+          echo "📊 Found $COUNT HTML templates"
