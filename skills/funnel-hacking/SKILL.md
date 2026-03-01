@@ -75,7 +75,7 @@ Existing Assets: [testimonials, media, email provider, payment processor]
 
 ## Step 2: Crawl & Extract — Analyze Every Page
 
-For **each URL** provided, use your page-reading tools (`read_url_content`, browser tools) to fetch the full page content. Then perform this systematic extraction.
+For **each URL** provided, use your web fetch tools to retrieve the full page content (HTML, visible text, meta tags). Then perform this systematic extraction.
 
 > **If the user provides multiple URLs**, analyze them in funnel order (entry page first, thank-you page last). If the order isn't clear, ask.
 
@@ -450,6 +450,8 @@ const fadeObserver = new IntersectionObserver((entries) => {
 document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
 
 // Social Proof Toast Notifications
+// IMPORTANT: Replace these placeholder names with realistic names
+// matching the user's target market and geography.
 const names = ['Sarah from Austin', 'Mike from London', 'Priya from Mumbai'];
 function showProofToast() {
   const name = names[Math.floor(Math.random() * names.length)];
