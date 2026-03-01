@@ -2,6 +2,22 @@
 
 All notable changes to the Funnel Architect plugin will be documented in this file.
 
+## [1.1.0] - 2025-03-01
+
+### Added
+- **Funnel Hacking** skill (`skills/funnel-hacking/`) — reverse-engineer any live public funnel and rebuild it for the user's brand
+  - Full 6-step autonomous workflow: Intake → Crawl & Extract → Discovery → Blueprint → Build Delegation → Verification
+  - Hook/Story/Offer analysis framework (Russell Brunson methodology)
+  - JavaScript functionality audit and replication patterns
+  - Structured templates: `analysis-template.md` and `blueprint-template.md`
+  - Cross-references all 12 funnel type skills and all 5 agents
+  - Ethics guardrails to prevent copyright infringement
+
+### Changed
+- `CLAUDE.md` — added funnel hacking delegation row and workflow trigger section
+- `agents/funnel-builder.md` — added `funnel-hacking` to skills list
+- Skill count: 27 → 28
+
 ## [1.0.0] - 2025-02-24
 
 ### Added

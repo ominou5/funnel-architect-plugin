@@ -58,9 +58,10 @@ funnel-architect-plugin/
 │   ├── page-speed-optimizer.md
 │   ├── copy-doctor.md
 │   └── deploy-assistant.md
-├── skills/                       # 27 skills total
+├── skills/                       # 28 skills total
 │   ├── funnel-strategy/      # Discovery & blueprint
 │   ├── funnel-select/        # Funnel type matcher
+│   ├── funnel-hacking/      # Reverse-engineer live funnels
 │   ├── conversion-ux/        # CRO patterns
 │   ├── page-speed/           # Performance optimization
 │   ├── mobile-responsive/    # Mobile-first design
@@ -146,6 +147,8 @@ The plugin runs checks automatically as you build:
 "Optimize this page for mobile — it's getting 60% mobile traffic"
 
 "Deploy my funnel to Vercel with a custom domain"
+
+"Hack this funnel: https://example.com/sales-page — rebuild it for my brand"
 
 "Write 5 headline variants for A/B testing my SaaS landing page"
 ```
