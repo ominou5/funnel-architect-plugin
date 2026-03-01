@@ -8,6 +8,7 @@ tools: Read, Write, Edit, Glob, Grep, Bash
 skills:
   - funnel-strategy
   - funnel-select
+  - funnel-hacking
   - conversion-ux
   - page-speed
   - mobile-responsive
