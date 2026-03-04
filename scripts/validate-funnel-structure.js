@@ -30,10 +30,11 @@ function extractLinks(content) {
     let match;
     while ((match = hrefRegex.exec(content)) !== null) {
         const href = match[1];
-        // Only check relative links (not http, mailto, tel, javascript)
-        if (!href.match(/^(https?:|mailto:|tel:|javascript:|\/{2})/i)) {
-            links.push(href);
-        }
+        // Skip external links (http, mailto, tel, javascript)
+        if (href.match(/^(https?:|mailto:|tel:|javascript:|\/{2})/i)) continue;
+        // Skip template placeholders — {{VAR}}, [VAR], and server-routed /paths
+        if (/\{\{.*\}\}/.test(href) || /^\[.*\]$/.test(href) || href.startsWith('/')) continue;
+        links.push(href);
     }
     return links;
 }
@@ -41,6 +42,7 @@ function extractLinks(content) {
 function validate(dir) {
     const htmlFiles = findHTMLFiles(dir);
     const issues = [];
+    const warnings = [];
     let totalLinks = 0;
     let brokenLinks = 0;
 
@@ -48,14 +50,20 @@ function validate(dir) {
         const content = fs.readFileSync(file, 'utf8');
         const links = extractLinks(content);
         const fileDir = path.dirname(file);
+        const isTemplate = file.split(path.sep).includes('templates');
 
         for (const link of links) {
             totalLinks++;
             const resolved = path.resolve(fileDir, link);
             if (!fs.existsSync(resolved)) {
-                brokenLinks++;
                 const relFile = path.relative(dir, file);
-                issues.push(`${relFile} → ${link} (file not found)`);
+                if (isTemplate) {
+                    // Template cross-references are expected — warn only
+                    warnings.push(`${relFile} → ${link} (template cross-ref, resolved at build time)`);
+                } else {
+                    brokenLinks++;
+                    issues.push(`${relFile} → ${link} (file not found)`);
+                }
             }
         }
     }
@@ -65,6 +73,11 @@ function validate(dir) {
     console.log(`Pages found: ${htmlFiles.length}`);
     console.log(`Links checked: ${totalLinks}`);
     console.log(`Broken links: ${brokenLinks}`);
+
+    if (warnings.length > 0) {
+        console.log('\n⚠️  Template cross-references (not errors):');
+        warnings.forEach(w => console.log(`  • ${w}`));
+    }
 
     if (issues.length > 0) {
         console.log('\n❌ Broken links:');
