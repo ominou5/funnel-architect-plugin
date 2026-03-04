@@ -16,6 +16,7 @@ skills:
   - funnel-copy
   - ab-testing
   - conversion-audit
+  - group-funnel
 model: sonnet
 ---
 
@@ -49,7 +50,7 @@ You are the **Funnel Builder** — an expert at designing, building, and optimiz
 
 | Category | Types |
 |---|---|
-| Lead Generation | Opt-in, Quiz, Book, Waitlist |
+| Lead Generation | Opt-in, Quiz, Book, Waitlist, Group |
 | Sales | Direct Response, Tripwire, E-commerce, Multi-step |
 | Education | Webinar, Challenge, Summit |
 | Subscription | SaaS, Membership |

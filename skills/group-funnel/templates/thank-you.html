@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="[Meta Description]" />
+  <meta property="og:title" content="[OG Title]" />
+  <meta property="og:description" content="[OG Description]" />
+  <meta property="og:type" content="website" />
+  <title>[Lead Magnet Name] — You're In! — [Brand Name]</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+    :root {
+      --bg-primary: #0F172A;
+      --bg-secondary: #1E293B;
+      --bg-card: #334155;
+      --text-primary: #F8FAFC;
+      --text-secondary: #CBD5E1;
+      --text-muted: #94A3B8;
+      --accent: #3B82F6;
+      --accent-hover: #2563EB;
+      --accent-glow: rgba(59, 130, 246, 0.3);
+      --border: rgba(255, 255, 255, 0.1);
+      --success: #10B981;
+      --success-glow: rgba(16, 185, 129, 0.25);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ===================== LAYOUT ===================== */
+    .container {
+      width: 100%;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ===================== CONFETTI BAR ===================== */
+    .success-bar {
+      background: linear-gradient(90deg, rgba(16, 185, 129, 0.15) 0%, rgba(59, 130, 246, 0.1) 100%);
+      border-bottom: 1px solid rgba(16, 185, 129, 0.25);
+      padding: 12px 20px;
+      text-align: center;
+    }
+
+    .success-bar p {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--success);
+      letter-spacing: 0.01em;
+    }
+
+    /* ===================== CONFIRMATION HERO ===================== */
+    .confirm-section {
+      padding: 64px 0 40px;
+      text-align: center;
+    }
+
+    .check-circle {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(59, 130, 246, 0.15));
+      border: 2px solid rgba(16, 185, 129, 0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 28px;
+      box-shadow:
+        0 0 0 12px rgba(16, 185, 129, 0.07),
+        0 0 0 24px rgba(16, 185, 129, 0.03),
+        0 8px 40px rgba(16, 185, 129, 0.25);
+      animation: pop-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    @keyframes pop-in {
+      0% {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .check-circle svg {
+      width: 38px;
+      height: 38px;
+      stroke: var(--success);
+      fill: none;
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 60;
+      stroke-dashoffset: 60;
+      animation: draw-check 0.5s ease 0.4s forwards;
+    }
+
+    @keyframes draw-check {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    .confirm-h1 {
+      font-size: clamp(26px, 5vw, 40px);
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+
+    .confirm-sub {
+      font-size: clamp(15px, 2.5vw, 18px);
+      color: var(--text-secondary);
+      max-width: 520px;
+      margin: 0 auto 12px;
+      line-height: 1.65;
+    }
+
+    .confirm-tip {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 0;
+    }
+
+    .confirm-tip strong {
+      color: var(--text-secondary);
+    }
+
+    /* ===================== VIDEO PLACEHOLDER ===================== */
+    .video-section {
+      padding: 40px 0 56px;
+    }
+
+    .video-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .video-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 1px rgba(59, 130, 246, 0.1),
+        0 20px 60px rgba(0, 0, 0, 0.45);
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .video-screen {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(135deg, #0A1628 0%, #111D38 40%, #0A1628 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      padding: 24px;
+      overflow: hidden;
+    }
+
+    /* Grid lines background */
+    .video-screen::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+    }
+
+    /* Glow orb */
+    .video-screen::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50%;
+      height: 60%;
+      background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .video-play-btn {
+      width: 80px;
+      height: 80px;
+      background: rgba(59, 130, 246, 0.85);
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow:
+        0 0 0 12px rgba(59, 130, 246, 0.12),
+        0 0 0 24px rgba(59, 130, 246, 0.06),
+        0 8px 32px rgba(59, 130, 246, 0.5);
+      animation: pulse-play 2.5s ease-in-out infinite;
+      position: relative;
+      z-index: 1;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .video-play-btn:hover {
+      background: var(--accent);
+      transform: scale(1.08);
+    }
+
+    .video-play-btn svg {
+      width: 30px;
+      height: 30px;
+      fill: #fff;
+      margin-left: 5px;
+    }
+
+    @keyframes pulse-play {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 12px rgba(59, 130, 246, 0.12), 0 0 0 24px rgba(59, 130, 246, 0.06), 0 8px 32px rgba(59, 130, 246, 0.5);
+      }
+
+      50% {
+        box-shadow: 0 0 0 16px rgba(59, 130, 246, 0.08), 0 0 0 32px rgba(59, 130, 246, 0.03), 0 8px 48px rgba(59, 130, 246, 0.6);
+      }
+    }
+
+    .video-title-block {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .video-title-block strong {
+      display: block;
+      font-size: clamp(13px, 2vw, 16px);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .video-title-block span {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .loading-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .loading-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: bounce-dot 1.2s ease-in-out infinite;
+    }
+
+    .loading-dot:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .loading-dot:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes bounce-dot {
+
+      0%,
+      60%,
+      100% {
+        transform: translateY(0);
+        opacity: 0.4;
+      }
+
+      30% {
+        transform: translateY(-6px);
+        opacity: 1;
+      }
+    }
+
+    .video-footer {
+      background: var(--bg-card);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .video-footer-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent), #7C3AED);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .video-footer-meta {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .video-footer-meta strong {
+      display: block;
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+
+    .video-footer-duration {
+      margin-left: auto;
+      font-size: 12px;
+      color: var(--text-muted);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 3px 10px;
+      font-weight: 600;
+    }
+
+    /* ===================== COMMUNITY CTA ===================== */
+    .community-section {
+      padding: 0 0 64px;
+    }
+
+    .community-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 44px 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    .community-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), #7C3AED, #EC4899, var(--accent));
+      background-size: 200% 100%;
+      animation: shimmer 4s linear infinite;
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: 200% 0;
+      }
+
+      100% {
+        background-position: -200% 0;
+      }
+    }
+
+    .community-eyebrow {
+      display: inline-block;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--success);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+
+    .community-h2 {
+      font-size: clamp(22px, 4vw, 32px);
+      font-weight: 900;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .community-h2 .highlight {
+      color: var(--accent);
+    }
+
+    .community-desc {
+      font-size: clamp(14px, 2vw, 16px);
+      color: var(--text-secondary);
+      max-width: 480px;
+      margin: 0 auto 32px;
+      line-height: 1.7;
+    }
+
+    .community-perks {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 36px;
+      text-align: left;
+    }
+
+    .perk-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .perk-icon {
+      font-size: 18px;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .perk-text {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    .perk-text strong {
+      display: block;
+      color: var(--text-primary);
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+
+    .community-cta-btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 12px;
+      padding: 20px 40px;
+      letter-spacing: 0.01em;
+      box-shadow:
+        0 4px 24px rgba(59, 130, 246, 0.5),
+        0 0 0 0 rgba(59, 130, 246, 0.4);
+      animation: cta-pulse 2.8s ease-in-out infinite;
+      transition: background-color 0.2s, transform 0.15s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .community-cta-btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .community-cta-btn:hover {
+      background: var(--accent-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 40px rgba(59, 130, 246, 0.65);
+      animation: none;
+    }
+
+    .community-cta-btn:active {
+      transform: translateY(-1px);
+    }
+
+    @keyframes cta-pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 4px 24px rgba(59, 130, 246, 0.5), 0 0 0 0 rgba(59, 130, 246, 0.4);
+      }
+
+      50% {
+        box-shadow: 0 4px 32px rgba(59, 130, 246, 0.6), 0 0 0 10px rgba(59, 130, 246, 0);
+      }
+    }
+
+    .community-free-note {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 14px;
+    }
+
+    /* ===================== SHARE SECTION ===================== */
+    .share-section {
+      padding: 0 0 72px;
+    }
+
+    .share-heading {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 20px;
+      letter-spacing: 0.02em;
+    }
+
+    .share-heading strong {
+      color: var(--text-secondary);
+    }
+
+    .share-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .share-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 20px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s, color 0.2s, transform 0.15s;
+      text-decoration: none;
+    }
+
+    .share-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    .share-btn:hover {
+      border-color: rgba(59, 130, 246, 0.4);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      transform: translateY(-2px);
+    }
+
+    .share-btn.twitter:hover {
+      border-color: rgba(29, 161, 242, 0.5);
+      color: #1DA1F2;
+    }
+
+    .share-btn.copy:hover {
+      border-color: rgba(16, 185, 129, 0.4);
+      color: var(--success);
+    }
+
+    .copy-tooltip {
+      display: none;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--success);
+      margin-left: 4px;
+    }
+
+    /* ===================== FADE-IN ANIMATION ===================== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-in-delay-1 {
+      transition-delay: 0.1s;
+    }
+
+    .fade-in-delay-2 {
+      transition-delay: 0.2s;
+    }
+
+    .fade-in-delay-3 {
+      transition-delay: 0.3s;
+    }
+
+    /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 600px) {
+      .community-card {
+        padding: 28px 20px;
+      }
+
+      .community-perks {
+        grid-template-columns: 1fr;
+      }
+
+      .community-cta-btn {
+        width: 100%;
+        text-align: center;
+        padding: 18px 24px;
+        font-size: 16px;
+      }
+
+      .confirm-section {
+        padding: 48px 0 32px;
+      }
+
+      .share-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .share-btn {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Success Bar -->
+  <div class="success-bar">
+    <p>Access confirmed &#10003; &#8212; Check your inbox now</p>
+  </div>
+
+  <!-- Confirmation Hero -->
+  <section class="confirm-section">
+    <div class="container">
+      <div class="check-circle" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <polyline points="20 6 9 17 4 12" />
+        </svg>
+      </div>
+
+      <h1 class="confirm-h1 fade-in">You're In! Check Your Email for Access</h1>
+      <p class="confirm-sub fade-in fade-in-delay-1">
+        Your free [Lead Magnet Type] — <strong>[Lead Magnet Name]</strong> — is on its way to your inbox right now.
+      </p>
+      <p class="confirm-tip fade-in fade-in-delay-2">
+        <strong>Tip:</strong> Check your spam / promotions folder if you don't see it in 5 minutes, then mark us as "not
+        spam" so you never miss a lesson.
+      </p>
+    </div>
+  </section>
+
+  <!-- Video Placeholder -->
+  <section class="video-section">
+    <div class="container">
+      <p class="video-label fade-in">Your mini-course</p>
+      <div class="video-card fade-in fade-in-delay-1">
+        <div class="video-screen">
+          <button class="video-play-btn" type="button" aria-label="Play mini-course video">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </button>
+          <div class="video-title-block">
+            <strong>[Video Title]</strong>
+            <span>Video loading&hellip;</span>
+          </div>
+          <div class="loading-bar" aria-label="Loading" role="status">
+            <div class="loading-dot"></div>
+            <div class="loading-dot"></div>
+            <div class="loading-dot"></div>
+          </div>
+        </div>
+        <div class="video-footer">
+          <div class="video-footer-icon" aria-hidden="true">[Brand Initial]</div>
+          <div class="video-footer-meta">
+            <strong>[Brand Name]</strong>
+            [Lead Magnet Type] Series
+          </div>
+          <div class="video-footer-duration">[Video Duration]</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Community CTA -->
+  <section class="community-section">
+    <div class="container">
+      <div class="community-card fade-in">
+        <div class="community-eyebrow">Next Step</div>
+        <h2 class="community-h2">
+          While You Wait — Join the<br />
+          <span class="highlight">[Community Name]</span> (Free)
+        </h2>
+        <p class="community-desc">
+          [Community Description — describe why your community is valuable and what members get]
+        </p>
+
+        <div class="community-perks">
+          <div class="perk-item">
+            <div class="perk-icon" aria-hidden="true">[Perk 1 Emoji]</div>
+            <div class="perk-text">
+              <strong>[Perk 1 Title]</strong>
+              [Perk 1 Description]
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-icon" aria-hidden="true">[Perk 2 Emoji]</div>
+            <div class="perk-text">
+              <strong>[Perk 2 Title]</strong>
+              [Perk 2 Description]
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-icon" aria-hidden="true">[Perk 3 Emoji]</div>
+            <div class="perk-text">
+              <strong>[Perk 3 Title]</strong>
+              [Perk 3 Description]
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-icon" aria-hidden="true">[Perk 4 Emoji]</div>
+            <div class="perk-text">
+              <strong>[Perk 4 Title]</strong>
+              [Perk 4 Description]
+            </div>
+          </div>
+        </div>
+
+        <a href="[Community URL]" class="community-cta-btn" target="_blank" rel="noopener noreferrer"
+          aria-label="Join [Community Name] for free">
+          Join the Free Community &rarr;
+        </a>
+        <p class="community-free-note">Free to join. No credit card. Cancel anytime (though you won't want to).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Share -->
+  <section class="share-section">
+    <div class="container">
+      <p class="share-heading fade-in">
+        <strong>Know a creator who should see this?</strong> Share it:
+      </p>
+      <div class="share-buttons fade-in fade-in-delay-1">
+
+        <!-- Twitter / X Share -->
+        <a href="[Twitter Share Text]" class="share-btn twitter" target="_blank" rel="noopener noreferrer"
+          aria-label="Share on X / Twitter">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.629L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" />
+          </svg>
+          Share on X
+        </a>
+
+        <!-- Copy Link -->
+        <button class="share-btn copy" id="copyBtn" type="button" aria-label="Copy page link to clipboard">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+          </svg>
+          Copy Link
+          <span class="copy-tooltip" id="copyTooltip">Copied!</span>
+        </button>
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Intersection Observer for fade-in
+    (function () {
+      var els = document.querySelectorAll('.fade-in');
+      if (!('IntersectionObserver' in window)) {
+        els.forEach(function (el) { el.classList.add('visible'); });
+        return;
+      }
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      els.forEach(function (el) { observer.observe(el); });
+    }());
+
+    // Copy link to clipboard
+    (function () {
+      var btn = document.getElementById('copyBtn');
+      var tooltip = document.getElementById('copyTooltip');
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        var url = window.location.href;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(url).then(showCopied).catch(fallbackCopy);
+        } else {
+          fallbackCopy();
+        }
+      });
+      function showCopied() {
+        tooltip.style.display = 'inline';
+        btn.style.pointerEvents = 'none';
+        setTimeout(function () {
+          tooltip.style.display = 'none';
+          btn.style.pointerEvents = '';
+        }, 2200);
+      }
+      function fallbackCopy() {
+        var ta = document.createElement('textarea');
+        ta.value = window.location.href;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        try { document.execCommand('copy'); showCopied(); } catch (e) { }
+        document.body.removeChild(ta);
+      }
+    }());
+
+    // Video play button click — placeholder interaction
+    (function () {
+      var playBtn = document.querySelector('.video-play-btn');
+      var loadingBar = document.querySelector('.loading-bar');
+      var videoSubText = document.querySelector('.video-title-block span');
+      if (!playBtn) return;
+      playBtn.addEventListener('click', function () {
+        if (videoSubText) videoSubText.textContent = 'Video will be available in your email — check your inbox!';
+        if (loadingBar) loadingBar.style.display = 'none';
+        playBtn.style.opacity = '0.5';
+        playBtn.style.pointerEvents = 'none';
+      });
+    }());
+  </script>
+
+</body>
+
+</html>

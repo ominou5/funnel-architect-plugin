@@ -21,6 +21,7 @@ START
 │  │  ├─ Offering a PDF/checklist/template? → OPT-IN FUNNEL
 │  │  ├─ Want to segment / qualify leads? → QUIZ FUNNEL
 │  │  ├─ Promoting a book? → BOOK FUNNEL
+│  │  ├─ Growing a community group (Skool, Whop, Facebook, Discord)? → GROUP FUNNEL
 │  │  └─ Building anticipation for a launch? → WAITLIST FUNNEL
 │  │
 │  ├─ Sell a product or service
@@ -66,6 +67,7 @@ START
 | Membership | 4–6 | ⭐⭐⭐⭐ | Recurring content | 3–8% conversion |
 | Affiliate | 3–4 | ⭐⭐ | Partner recruitment | 10–25% signup |
 | Multi-step | 5–10 | ⭐⭐⭐⭐⭐ | Complex B2B sales | Varies |
+| Group | 2 | ⭐ | Community growth (Skool, Whop, Facebook, Discord) | 25–50% opt-in, 15–40% group join |
 
 ## Output
 

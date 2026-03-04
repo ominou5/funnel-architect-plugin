@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="[Meta Description]" />
+  <meta property="og:title" content="[OG Title]" />
+  <meta property="og:description" content="[OG Description]" />
+  <meta property="og:type" content="website" />
+  <title>[Lead Magnet Name] — [Brand Name]</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+    :root {
+      --bg-primary: #0F172A;
+      --bg-secondary: #1E293B;
+      --bg-card: #334155;
+      --text-primary: #F8FAFC;
+      --text-secondary: #CBD5E1;
+      --text-muted: #94A3B8;
+      --accent: #3B82F6;
+      --accent-hover: #2563EB;
+      --accent-glow: rgba(59, 130, 246, 0.3);
+      --border: rgba(255, 255, 255, 0.1);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ===================== LAYOUT ===================== */
+    .container {
+      width: 100%;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    section {
+      width: 100%;
+    }
+
+    /* ===================== TOP BAR ===================== */
+    .top-bar {
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 20px;
+      text-align: center;
+    }
+
+    .top-bar p {
+      font-size: 13px;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+
+    .top-bar span {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* ===================== HERO ===================== */
+    .hero {
+      padding: 72px 0 40px;
+      text-align: center;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(59, 130, 246, 0.35);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(26px, 5vw, 48px);
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 .highlight {
+      color: var(--accent);
+      position: relative;
+    }
+
+    .hero-sub {
+      font-size: clamp(16px, 2.5vw, 20px);
+      color: var(--text-secondary);
+      font-weight: 400;
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.65;
+    }
+
+    /* ===================== VIDEO MOCKUP ===================== */
+    .mockup-wrapper {
+      margin: 0 auto 48px;
+      max-width: 520px;
+    }
+
+    .mockup-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      box-shadow:
+        0 0 0 1px rgba(59, 130, 246, 0.15),
+        0 25px 60px rgba(0, 0, 0, 0.5),
+        0 0 80px rgba(59, 130, 246, 0.08);
+    }
+
+    .mockup-screen {
+      background: linear-gradient(135deg, #0D1B2A 0%, #1A2744 50%, #0D1B2A 100%);
+      aspect-ratio: 16 / 9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mockup-screen::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .play-btn {
+      width: 72px;
+      height: 72px;
+      background: rgba(59, 130, 246, 0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 0 0 10px rgba(59, 130, 246, 0.15),
+        0 0 0 20px rgba(59, 130, 246, 0.07),
+        0 8px 32px rgba(59, 130, 246, 0.5);
+      animation: pulse-play 2.5s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    .play-btn svg {
+      width: 28px;
+      height: 28px;
+      fill: #fff;
+      margin-left: 4px;
+    }
+
+    @keyframes pulse-play {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 10px rgba(59, 130, 246, 0.15), 0 0 0 20px rgba(59, 130, 246, 0.07), 0 8px 32px rgba(59, 130, 246, 0.5);
+      }
+
+      50% {
+        box-shadow: 0 0 0 14px rgba(59, 130, 246, 0.10), 0 0 0 28px rgba(59, 130, 246, 0.04), 0 8px 48px rgba(59, 130, 246, 0.6);
+      }
+    }
+
+    .mockup-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-align: center;
+      letter-spacing: 0.01em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .mockup-label strong {
+      display: block;
+      font-size: 15px;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .mockup-footer {
+      background: var(--bg-card);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .mockup-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #7C3AED);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .mockup-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .mockup-meta strong {
+      color: var(--text-secondary);
+      font-size: 13px;
+    }
+
+    .mockup-badge {
+      margin-left: auto;
+      background: rgba(59, 130, 246, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 100px;
+    }
+
+    /* ===================== BULLETS ===================== */
+    .bullets-section {
+      padding: 0 0 48px;
+    }
+
+    .bullets-heading {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .bullets-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .bullet-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .bullet-item:hover {
+      border-color: rgba(59, 130, 246, 0.35);
+      transform: translateX(4px);
+    }
+
+    .bullet-icon {
+      width: 28px;
+      height: 28px;
+      background: rgba(59, 130, 246, 0.15);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .bullet-icon svg {
+      width: 15px;
+      height: 15px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .bullet-text {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    .bullet-text strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* ===================== OPT-IN FORM ===================== */
+    .optin-section {
+      padding: 0 0 56px;
+    }
+
+    .form-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px 36px;
+      box-shadow:
+        0 0 0 1px rgba(59, 130, 246, 0.08),
+        0 20px 60px rgba(0, 0, 0, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .form-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), #7C3AED, var(--accent));
+      background-size: 200% 100%;
+      animation: shimmer 3s linear infinite;
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: 200% 0;
+      }
+
+      100% {
+        background-position: -200% 0;
+      }
+    }
+
+    .form-headline {
+      font-size: clamp(20px, 3.5vw, 26px);
+      font-weight: 800;
+      color: var(--text-primary);
+      text-align: center;
+      margin-bottom: 8px;
+      line-height: 1.25;
+    }
+
+    .form-sub {
+      font-size: 14px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .form-field {
+      position: relative;
+    }
+
+    .form-field svg {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 17px;
+      height: 17px;
+      stroke: var(--text-muted);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      pointer-events: none;
+    }
+
+    .form-field input {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px 14px 44px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: var(--text-primary);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .form-field input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .form-field input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+
+    .cta-btn {
+      display: block;
+      width: 100%;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      text-align: center;
+      border: none;
+      border-radius: 12px;
+      padding: 18px 28px;
+      cursor: pointer;
+      letter-spacing: 0.01em;
+      box-shadow:
+        0 4px 20px rgba(59, 130, 246, 0.45),
+        0 0 0 0 rgba(59, 130, 246, 0.4);
+      animation: cta-pulse 2.8s ease-in-out infinite;
+      transition: background-color 0.2s, transform 0.15s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .cta-btn:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow:
+        0 8px 30px rgba(59, 130, 246, 0.6),
+        0 0 0 0 rgba(59, 130, 246, 0.4);
+      animation: none;
+    }
+
+    .cta-btn:active {
+      transform: translateY(0);
+    }
+
+    @keyframes cta-pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 4px 20px rgba(59, 130, 246, 0.45), 0 0 0 0 rgba(59, 130, 246, 0.4);
+      }
+
+      50% {
+        box-shadow: 0 4px 30px rgba(59, 130, 246, 0.55), 0 0 0 8px rgba(59, 130, 246, 0);
+      }
+    }
+
+    .privacy-line {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 14px;
+    }
+
+    /* ===================== SOCIAL PROOF ===================== */
+    .social-proof {
+      padding: 0 0 72px;
+    }
+
+    .proof-bar {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .proof-avatars {
+      display: flex;
+    }
+
+    .proof-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid var(--bg-secondary);
+      margin-left: -10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .proof-avatar:first-child {
+      margin-left: 0;
+      background: linear-gradient(135deg, #3B82F6, #7C3AED);
+    }
+
+    .proof-avatar:nth-child(2) {
+      background: linear-gradient(135deg, #10B981, #3B82F6);
+    }
+
+    .proof-avatar:nth-child(3) {
+      background: linear-gradient(135deg, #F59E0B, #EF4444);
+    }
+
+    .proof-avatar:nth-child(4) {
+      background: linear-gradient(135deg, #EC4899, #8B5CF6);
+    }
+
+    .proof-avatar:nth-child(5) {
+      background: linear-gradient(135deg, #06B6D4, #3B82F6);
+    }
+
+    .proof-text {
+      font-size: 14px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .proof-text strong {
+      color: var(--text-primary);
+    }
+
+    .proof-stars {
+      display: flex;
+      gap: 2px;
+    }
+
+    .proof-stars svg {
+      width: 16px;
+      height: 16px;
+      fill: #F59E0B;
+    }
+
+    /* ===================== FADE-IN ANIMATION ===================== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-in-delay-1 {
+      transition-delay: 0.1s;
+    }
+
+    .fade-in-delay-2 {
+      transition-delay: 0.2s;
+    }
+
+    .fade-in-delay-3 {
+      transition-delay: 0.3s;
+    }
+
+    .fade-in-delay-4 {
+      transition-delay: 0.4s;
+    }
+
+    /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 600px) {
+      .form-card {
+        padding: 28px 20px;
+      }
+
+      .proof-bar {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+      }
+
+      .hero {
+        padding: 48px 0 32px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <p><span>[Lead Magnet Type]:</span> [Lead Magnet Name]</p>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-eyebrow fade-in">Free Instant Access</div>
+
+      <h1 class="fade-in fade-in-delay-1">
+        [Headline]
+      </h1>
+
+      <p class="hero-sub fade-in fade-in-delay-2">
+        [Hero Sub-headline — describe the lead magnet value for your target audience]
+      </p>
+
+      <!-- Mockup -->
+      <div class="mockup-wrapper fade-in fade-in-delay-3">
+        <div class="mockup-card">
+          <div class="mockup-screen">
+            <div class="play-btn" aria-label="Play mini-course preview">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </div>
+            <div class="mockup-label">
+              <strong>[Lead Magnet Name]</strong>
+              [Lead Magnet Type] — Instant Access
+            </div>
+          </div>
+          <div class="mockup-footer">
+            <div class="mockup-avatar" aria-hidden="true">[Brand Initial]</div>
+            <div class="mockup-meta">
+              <strong>[Brand Name]</strong><br />
+              [Lead Magnet Type] Series
+            </div>
+            <div class="mockup-badge">Free</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bullets -->
+  <section class="bullets-section">
+    <div class="container">
+      <p class="bullets-heading fade-in">What you'll learn inside</p>
+      <ul class="bullets-list" role="list">
+        <li class="bullet-item fade-in fade-in-delay-1">
+          <div class="bullet-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          </div>
+          <span class="bullet-text"><strong>[Bullet 1 Bold]</strong> [Bullet 1 Text]</span>
+        </li>
+        <li class="bullet-item fade-in fade-in-delay-2">
+          <div class="bullet-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          </div>
+          <span class="bullet-text"><strong>[Bullet 2 Bold]</strong> [Bullet 2 Text]</span>
+        </li>
+        <li class="bullet-item fade-in fade-in-delay-3">
+          <div class="bullet-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          </div>
+          <span class="bullet-text"><strong>[Bullet 3 Bold]</strong> [Bullet 3 Text]</span>
+        </li>
+        <li class="bullet-item fade-in fade-in-delay-4">
+          <div class="bullet-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          </div>
+          <span class="bullet-text"><strong>[Bullet 4 Bold]</strong> [Bullet 4 Text]</span>
+        </li>
+        <li class="bullet-item fade-in">
+          <div class="bullet-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          </div>
+          <span class="bullet-text"><strong>[Bullet 5 Bold]</strong> [Bullet 5 Text]</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Opt-In Form -->
+  <section class="optin-section" id="optin">
+    <div class="container">
+      <div class="form-card fade-in">
+        <h2 class="form-headline">[Form Headline]</h2>
+        <p class="form-sub">Enter your details below and get instant access.</p>
+
+        <form action="thank-you.html" method="GET" id="optinForm">
+          <div class="form-group">
+            <div class="form-field">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+              <input type="text" name="name" id="name" placeholder="Your first name" autocomplete="given-name" required
+                aria-label="First name" />
+            </div>
+            <div class="form-field">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+              <input type="email" name="email" id="email" placeholder="Your best email address" autocomplete="email"
+                required aria-label="Email address" />
+            </div>
+          </div>
+          <button type="submit" class="cta-btn" id="ctaBtn">
+            [CTA Button Text]
+          </button>
+        </form>
+
+        <p class="privacy-line">&#128274; Zero spam. Unsubscribe anytime. Your info is never shared.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Proof -->
+  <section class="social-proof">
+    <div class="container">
+      <div class="proof-bar fade-in">
+        <div class="proof-avatars" aria-hidden="true">
+          <div class="proof-avatar">[Avatar 1 Initials]</div>
+          <div class="proof-avatar">[Avatar 2 Initials]</div>
+          <div class="proof-avatar">[Avatar 3 Initials]</div>
+          <div class="proof-avatar">[Avatar 4 Initials]</div>
+          <div class="proof-avatar">+</div>
+        </div>
+        <div class="proof-stars" aria-label="5 stars" role="img">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+          </svg>
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+          </svg>
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+          </svg>
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+          </svg>
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+          </svg>
+        </div>
+        <p class="proof-text">Join <strong>[Social Proof Count] [Social Proof Audience]</strong> already using this
+          system</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Intersection Observer for fade-in animations
+    (function () {
+      var els = document.querySelectorAll('.fade-in');
+      if (!('IntersectionObserver' in window)) {
+        els.forEach(function (el) { el.classList.add('visible'); });
+        return;
+      }
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      els.forEach(function (el) { observer.observe(el); });
+    }());
+
+    // Form submit — redirect to thank-you page
+    (function () {
+      var form = document.getElementById('optinForm');
+      var btn = document.getElementById('ctaBtn');
+      if (!form) return;
+      form.addEventListener('submit', function (e) {
+        btn.textContent = 'Sending you access...';
+        btn.style.opacity = '0.8';
+        btn.disabled = true;
+        // Allow native form GET redirect to thank-you.html
+      });
+    }());
+  </script>
+
+</body>
+
+</html>

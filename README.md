@@ -20,7 +20,7 @@ Tell Claude what you're selling and who you're selling to. Funnel Architect hand
 | Without this plugin | With Funnel Architect |
 |---|---|
 | Research funnel types manually | Claude picks the optimal funnel for your offer |
-| Wire up pages, forms, and CTAs from scratch | 16 production-ready templates across 12 funnel types |
+| Wire up pages, forms, and CTAs from scratch | 18 production-ready templates across 13 funnel types |
 | Hire a copywriter or wing it | 5 specialist agents write, review, and optimize copy |
 | Hope your pages load fast | Automated Lighthouse audits and mobile checks on every save |
 | Deploy manually | One command to Vercel, Netlify, or Cloudflare |
@@ -46,6 +46,16 @@ claude --plugin-dir ./funnel-architect-plugin
 # "Build me an opt-in funnel for a free marketing checklist"
 ```
 
+## Updating
+
+Already have the plugin? Pull the latest skills and templates:
+
+```bash
+cd funnel-architect-plugin && git pull origin main
+```
+
+Then restart Claude Code to pick up the new skills.
+
 ## Plugin Structure
 
 ```
@@ -58,7 +68,7 @@ funnel-architect-plugin/
 │   ├── page-speed-optimizer.md
 │   ├── copy-doctor.md
 │   └── deploy-assistant.md
-├── skills/                       # 28 skills total
+├── skills/                       # 29 skills total
 │   ├── funnel-strategy/      # Discovery & blueprint
 │   ├── funnel-select/        # Funnel type matcher
 │   ├── funnel-hacking/      # Reverse-engineer live funnels
@@ -86,6 +96,7 @@ funnel-architect-plugin/
 │   ├── deploy-netlify/       # Netlify deployment
 │   ├── deploy-vercel/        # Vercel deployment
 │   ├── deploy-cloudflare/    # Cloudflare Pages deployment
+│   ├── group-funnel/         # Community group funnel (Skool, Whop, Facebook, etc.)
 │   └── dns-management/       # Custom domain setup
 ├── hooks/
 │   └── hooks.json            # Automated checks
@@ -110,7 +121,7 @@ funnel-architect-plugin/
 | **Copy Doctor** | Copywriter — headlines, CTAs, objection handlers |
 | **Deploy Assistant** | DevOps — deploys to Vercel, Netlify, or Cloudflare |
 
-## Supported Funnel Types (12)
+## Supported Funnel Types (13)
 
 | Funnel | Pages | Best For |
 |---|---|---|
@@ -126,6 +137,7 @@ funnel-architect-plugin/
 | **High-Ticket** | Authority Content → Sales Page → Call | Programs, services ($3K+) |
 | **Membership** | Landing → Trial → Onboarding → Dashboard | Communities, content libraries |
 | **E-Commerce** | Product Page → Cart → Checkout → Upsell | Physical/digital products, DTC |
+| **Group** | Opt-In → Thank You (w/ Community CTA) | Skool, Whop, Facebook Groups, Discord |
 
 ## Automated Hooks
 
@@ -151,6 +163,8 @@ The plugin runs checks automatically as you build:
 "Hack this funnel: https://example.com/sales-page — rebuild it for my brand"
 
 "Write 5 headline variants for A/B testing my SaaS landing page"
+
+"I have a Skool group — build me a funnel to drive free signups"
 ```
 
 ## Integrations

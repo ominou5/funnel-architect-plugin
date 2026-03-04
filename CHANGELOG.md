@@ -2,6 +2,23 @@
 
 All notable changes to the Funnel Architect plugin will be documented in this file.
 
+## [1.2.0] - 2026-03-04
+
+### Added
+- **Group Funnel** skill (`skills/group-funnel/`) — 2-page community group growth funnel
+  - Platform-agnostic: works with Skool, Whop, Facebook Groups, Discord, Circle, or any community URL
+  - Trigger keywords: "Skool", "Whop", "Facebook group", "community group", "Discord server", "paid group", etc.
+  - Templates: `opt-in-page.html` and `thank-you.html` with full `[Placeholder]` customization
+  - Community CTA card with 4-perk grid, social share buttons, and animated video placeholder
+  - Conversion benchmarks and A/B test recommendations
+
+### Changed
+- `CLAUDE.md` — added Group funnel delegation row and trigger keywords
+- `README.md` — added Group funnel to types table, bumped skill count to 29 and template count to 18
+- `skills/funnel-select/SKILL.md` — added Group funnel to decision tree and comparison table
+- `agents/funnel-builder.md` — added `group-funnel` to skills list and funnel types table
+- Skill count: 28 → 29
+
 ## [1.1.0] - 2025-03-01
 
 ### Added
